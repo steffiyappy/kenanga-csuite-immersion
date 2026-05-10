@@ -177,6 +177,7 @@ table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
 }
 
 
+
 /* === COWORK-LIB-CSS-START === */
 .cw-hero{background:linear-gradient(135deg,#FAFBFF 0%,#F0F6FF 100%);border:1px solid var(--mgrey);border-radius:16px;padding:32px 36px;margin-bottom:24px}
 .cw-eyebrow{display:inline-block;background:#E0E7FF;color:#4338CA;font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:5px 12px;border-radius:99px;margin-bottom:14px}
@@ -217,7 +218,11 @@ table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
 .cw-section-label{font-size:.66rem;font-weight:700;color:#64748B;letter-spacing:.1em;margin:12px 0 6px;text-transform:uppercase}
 .cw-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
 .app-pill{background:#F1F5F9;color:#334155;font-size:.72rem;padding:3px 9px;border-radius:5px;font-weight:500}
-.file-pill{background:#FAFAFA;border:1px solid var(--mgrey);color:#334155;font-size:.72rem;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:4px;font-family:'Cascadia Code','Consolas',monospace}
+.file-pill{background:#FAFAFA;border:1px solid var(--mgrey);color:#334155;font-size:.72rem;padding:3px 8px;border-radius:5px;display:inline-flex;align-items:center;gap:4px;font-family:'Cascadia Code','Consolas',monospace;text-decoration:none;transition:all .15s}
+a.file-pill:hover{background:#EFF6FF;border-color:var(--blue);color:var(--navy);box-shadow:0 1px 3px rgba(37,99,235,.18)}
+.cw-files-label{display:flex;align-items:center;flex-wrap:wrap;gap:8px;justify-content:space-between}
+.cw-download-all{font-size:.72rem;font-weight:600;color:var(--blue);text-decoration:none;background:#EFF6FF;border:1px solid #BFDBFE;padding:3px 10px;border-radius:99px;letter-spacing:0;text-transform:none}
+.cw-download-all:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 .ext{font-size:.62rem;font-weight:700;padding:1px 5px;border-radius:3px;letter-spacing:.04em}
 .ext-xlsx{background:#10B981;color:#fff}
 .ext-pdf{background:#EF4444;color:#fff}
@@ -884,8 +889,8 @@ table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-pdf">PDF</span> Annual_Report.pdf</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Audited_Financials.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Management_Accounts.xlsx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-01-credit-underwriting-pack_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (3 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-01-credit-underwriting-pack/Annual_Report.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Annual_Report.pdf</a><a class="file-pill" href="files/cowork/UC-01-credit-underwriting-pack/Audited_Financials.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Audited_Financials.xlsx</a><a class="file-pill" href="files/cowork/UC-01-credit-underwriting-pack/Management_Accounts.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Management_Accounts.xlsx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the underwriting memo</span></div><div class="prompt-box" id="cw-uc-credit-underwriting-pack-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-credit-underwriting-pack-1')">📋 Copy</button>You are acting as a senior credit risk officer preparing an underwriting recommendation. I have uploaded [BORROWER]&#x27;s annual report, audited financials and latest management accounts. Produce a structured credit underwriting memo of no more than 12 pages with the following sections:
 
@@ -926,8 +931,8 @@ Cite statement sections and note numbers when highlighting findings. Do not fabr
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">Excel</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-pdf">PDF</span> Target_Pitch.pdf</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Financials.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Comparables.xlsx</span><span class="file-pill"><span class="ext ext-docx">DOCX</span> Term_Sheet.docx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-02-investment-council_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (4 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-02-investment-council/Target_Pitch.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Target_Pitch.pdf</a><a class="file-pill" href="files/cowork/UC-02-investment-council/Financials.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Financials.xlsx</a><a class="file-pill" href="files/cowork/UC-02-investment-council/Comparables.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Comparables.xlsx</a><a class="file-pill" href="files/cowork/UC-02-investment-council/Term_Sheet.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> Term_Sheet.docx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Convene the council and produce the IC interim report</span></div><div class="prompt-box" id="cw-uc-investment-council-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-investment-council-1')">📋 Copy</button>You are acting as a council of agents to help an investment committee assess investment merits for [TARGET]. Convene a panel covering five roles and produce an audit-ready interim report. For each of the following roles, perform deep analysis, produce dissent where appropriate, and capture evidence with traceability.
 
@@ -965,8 +970,8 @@ Finally analyse all five views together for recommendations, evidence, assumptio
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">PowerPoint</span><span class="app-pill">Word</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-pdf">PDF</span> Shareholder_Register.pdf</span><span class="file-pill"><span class="ext ext-pdf">PDF</span> Group_Structure.pdf</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-03-ubo-kyc_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (2 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-03-ubo-kyc/Shareholder_Register.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Shareholder_Register.pdf</a><a class="file-pill" href="files/cowork/UC-03-ubo-kyc/Group_Structure.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Group_Structure.pdf</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the UBO diagram</span></div><div class="prompt-box" id="cw-uc-ubo-kyc-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-ubo-kyc-1')">📋 Copy</button>Create an Ultimate Beneficial Ownership (UBO) diagram for [ENTITY_NAME]. Recursively identify the UBO of each identified shareholder until you reach individual shareholders. Where a corporate shareholder owns &gt;= 10% of the entity, treat as material and include in the diagram. If you cannot resolve a branch to an individual within the documents provided, mark it &#x27;UBO not established - investigate&#x27;. Use a hierarchical tree layout. Annotate each box with: legal entity name, country of incorporation, % ownership, and source (document name + page number). Produce as a PowerPoint slide and export to PDF for the KYC file. Save to /Compliance/KYC/[ENTITY_NAME]/UBO_[DATE].pdf.</div></div>
         <div class="cw-grid2">
@@ -995,8 +1000,8 @@ Finally analyse all five views together for recommendations, evidence, assumptio
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Excel</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-png">PNG</span> DBS_Sample_E-Stmt.png</span><span class="file-pill"><span class="ext ext-pdf">PDF</span> CIMB_Sample_E-Stmt.pdf</span><span class="file-pill"><span class="ext ext-pdf">PDF</span> UOB_Sample_E-Stmt.pdf</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-04-bank-statement-extraction_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (3 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-04-bank-statement-extraction/Aurora_Bank_Sample_E-Stmt.png" download title="Click to download"><span class="ext ext-png">PNG</span> Aurora_Bank_Sample_E-Stmt.png</a><a class="file-pill" href="files/cowork/UC-04-bank-statement-extraction/Crescent_Bank_Sample_E-Stmt.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Crescent_Bank_Sample_E-Stmt.pdf</a><a class="file-pill" href="files/cowork/UC-04-bank-statement-extraction/Unity_Bank_Sample_E-Stmt.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Unity_Bank_Sample_E-Stmt.pdf</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Extract -&gt; standardise -&gt; split by month</span></div><div class="prompt-box" id="cw-uc-bank-statement-extraction-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-bank-statement-extraction-1')">📋 Copy</button>Extract the contents from the bank statements I have uploaded into a single Excel workbook with the following columns: Page No, Bank, Transaction Date, Description, Debit, Credit, Running Balance, Currency.
 
@@ -1034,8 +1039,8 @@ Save as &#x27;Statements_Consolidated_[CUSTOMER]_[DATE].xlsx&#x27; to /Operation
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Excel</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-pdf">PDF</span> Audited_Financials.pdf</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Spreading_Template_v2.xlsx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-05-financial-spreading_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (2 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-05-financial-spreading/Audited_Financials.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Audited_Financials.pdf</a><a class="file-pill" href="files/cowork/UC-05-financial-spreading/Spreading_Template_v2.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Spreading_Template_v2.xlsx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Spread the financials into the template</span></div><div class="prompt-box" id="cw-uc-financial-spreading-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-financial-spreading-1')">📋 Copy</button>Perform financial spreading of the financial report I have uploaded into the [SPREADING_TEMPLATE].xlsx. Map each line item from the borrower&#x27;s audited statements to the corresponding row in the template. Preserve sign conventions and units (RM &#x27;000). Cover the latest 3 financial years.
 
@@ -1068,8 +1073,8 @@ Flag any unmapped line items at the bottom of the workbook in a sheet called &#x
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Edge</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Project_Cashflow_Model.xlsx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-06-cashflow-model-app_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (1 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-06-cashflow-model-app/Project_Cashflow_Model.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Project_Cashflow_Model.xlsx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">P1</span><span class="cw-plabel">Understand + Build the app</span></div><div class="prompt-box" id="cw-uc-cashflow-model-app-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-cashflow-model-app-1')">📋 Copy</button>I&#x27;ve attached our 5-year IT infrastructure cashflow model. First walk me through the structure - drivers, inputs, formulas, and any assumptions an investment committee would push on. Then convert it into a Python program with an interactive HTML front-end: sliders for WACC (6%-12%), USD/SGD (0.70-0.78), contingency (5%-15%), opex escalation (0%-5%). Show total 5-year spend, NPV, IRR, and a year-by-year cash-out chart. Deliver code + runnable HTML I can preview locally.</div></div><div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">P2</span><span class="cw-plabel">Validate + Run scenarios</span></div><div class="prompt-box" id="cw-uc-cashflow-model-app-2"><button class="copy-btn" onclick="copyPrompt('cw-uc-cashflow-model-app-2')">📋 Copy</button>Run the new app at original assumptions and give me a parity report vs the spreadsheet (capex/opex by year, NPV, IRR, total outflow) - flag any divergence &gt; SGD 100. Then run three scenarios: base (current), upside (WACC 7%, USD 0.76, contingency 6%), downside (WACC 10%, USD 0.72, contingency 12%). Summarise NPV swing and the top three line items driving variance.</div></div>
         <div class="cw-grid2">
@@ -1098,8 +1103,8 @@ Flag any unmapped line items at the bottom of the workbook in a sheet called &#x
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Underwriting_Scorecard.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Historical_Deals.xlsx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-07-underwriting-decision-engine_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (2 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-07-underwriting-decision-engine/Underwriting_Scorecard.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Underwriting_Scorecard.xlsx</a><a class="file-pill" href="files/cowork/UC-07-underwriting-decision-engine/Historical_Deals.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Historical_Deals.xlsx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build engine and back-test it</span></div><div class="prompt-box" id="cw-uc-underwriting-decision-engine-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-underwriting-decision-engine-1')">📋 Copy</button>I&#x27;ve uploaded our underwriting scoring spreadsheet and a set of 30 historical deals with their actual outcomes (approved/declined/post-deal default). Convert the spreadsheet into a Python decision engine that takes a borrower&#x27;s inputs and outputs the score, recommendation, and triggered policy gates. Then back-test the engine against the 30 historical deals - produce: (a) a confusion matrix (engine recommendation vs actual decision); (b) a list of the 5 deals where the engine disagreed most strongly with the actual decision, with rationale; (c) a list of the policy gates that triggered most often. Save the engine as &#x27;Underwriting_Engine_v1.py&#x27; and the back-test report as &#x27;Underwriting_Backtest_[DATE].docx&#x27; to /Credit/Engine/.</div></div>
         <div class="cw-grid2">
@@ -1128,8 +1133,8 @@ Flag any unmapped line items at the bottom of the workbook in a sheet called &#x
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">Outlook</span><span class="app-pill">Teams</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Change_Register_Q1.xlsx</span><span class="file-pill"><span class="ext ext-docx">DOCX</span> IT_Governance_Policy.docx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-08-it-governance_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (2 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-08-it-governance/Change_Register_Q1.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Change_Register_Q1.xlsx</a><a class="file-pill" href="files/cowork/UC-08-it-governance/IT_Governance_Policy.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> IT_Governance_Policy.docx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Audit changes and draft chasers</span></div><div class="prompt-box" id="cw-uc-it-governance-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-it-governance-1')">📋 Copy</button>Cross-reference every change in [CHANGE_REGISTER].xlsx against the policy clauses in [IT_GOV_POLICY].docx. For each change record, identify which policy clauses apply (CAB approval, segregation of duties, change window, rollback plan, evidence retention, post-implementation review) and flag whether the change record evidences each clause being met.
 
@@ -1165,8 +1170,8 @@ For each Critical and High exception, draft an email to the change owner listing
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">PowerPoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-pdf">PDF</span> Vendor_A_Proposal.pdf</span><span class="file-pill"><span class="ext ext-pdf">PDF</span> Vendor_B_Proposal.pdf</span><span class="file-pill"><span class="ext ext-pdf">PDF</span> Vendor_C_Proposal.pdf</span><span class="file-pill"><span class="ext ext-pdf">PDF</span> Vendor_D_Proposal.pdf</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> RFP_Criteria.xlsx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-09-rfp-scoring_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (5 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-09-rfp-scoring/Vendor_A_Proposal.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Vendor_A_Proposal.pdf</a><a class="file-pill" href="files/cowork/UC-09-rfp-scoring/Vendor_B_Proposal.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Vendor_B_Proposal.pdf</a><a class="file-pill" href="files/cowork/UC-09-rfp-scoring/Vendor_C_Proposal.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Vendor_C_Proposal.pdf</a><a class="file-pill" href="files/cowork/UC-09-rfp-scoring/Vendor_D_Proposal.pdf" download title="Click to download"><span class="ext ext-pdf">PDF</span> Vendor_D_Proposal.pdf</a><a class="file-pill" href="files/cowork/UC-09-rfp-scoring/RFP_Criteria.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> RFP_Criteria.xlsx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Score, normalise, and write the IC memo</span></div><div class="prompt-box" id="cw-uc-rfp-scoring-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-rfp-scoring-1')">📋 Copy</button>I&#x27;ve uploaded four vendor proposals (A, B, C, D) and our RFP scoring criteria. For each vendor: (1) extract their response against every criterion in the scorecard; (2) flag any criterion where the response is missing, vague, or non-committal; (3) extract every commercial figure and normalise to a 5-year TCO in [CURRENCY] including licensing, services, support, and any conditional fees.
 
@@ -1203,8 +1208,8 @@ Save the scorecard as &#x27;RFP_Scorecard_[PROJECT].xlsx&#x27; and the memo as &
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">Excel</span><span class="app-pill">Outlook</span><span class="app-pill">PowerPoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-folder">FOLDER</span> /Procurement/Contracts/Renewals_2026/</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-10-contract-renewal_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (4 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-10-contract-renewal/Procurement/Contracts/Renewals_2026/MSA_AlphaCloud_v3.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> MSA_AlphaCloud_v3.docx</a><a class="file-pill" href="files/cowork/UC-10-contract-renewal/Procurement/Contracts/Renewals_2026/SoW_BlueRiver_2025.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> SoW_BlueRiver_2025.docx</a><a class="file-pill" href="files/cowork/UC-10-contract-renewal/Procurement/Contracts/Renewals_2026/License_ConsultaSoft_2024.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> License_ConsultaSoft_2024.docx</a><a class="file-pill" href="files/cowork/UC-10-contract-renewal/Procurement/Contracts/Renewals_2026/Renewal_Proposal_DigitalPeak.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> Renewal_Proposal_DigitalPeak.docx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Read the folder and produce the playbook</span></div><div class="prompt-box" id="cw-uc-contract-renewal-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-contract-renewal-1')">📋 Copy</button>Read every .docx in /Procurement/Contracts/Renewals_2026/. For each contract, extract: vendor, contract value, renewal/expiry date, notice period, auto-renew Y/N, governing law, liability cap, key non-standard clauses.
 
@@ -1237,8 +1242,8 @@ Produce: (1) Excel renewal pipeline ranked by priority; (2) one Word renegotiati
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Outlook</span><span class="app-pill">Teams</span><span class="app-pill">Word</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> New_Joiner_Schedule.xlsx</span><span class="file-pill"><span class="ext ext-docx">DOCX</span> Role_Profile.docx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-11-onboarding-bundle_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (2 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-11-onboarding-bundle/New_Joiner_Schedule.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> New_Joiner_Schedule.xlsx</a><a class="file-pill" href="files/cowork/UC-11-onboarding-bundle/Role_Profile.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> Role_Profile.docx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the full onboarding bundle</span></div><div class="prompt-box" id="cw-uc-onboarding-bundle-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-onboarding-bundle-1')">📋 Copy</button>[NAME] is joining us as [ROLE] on [START_DATE], reporting to [MANAGER]. Pull the role profile and onboarding plan template, plus any team-specific materials in /HR/Onboarding/[TEAM]/.
 
@@ -1269,8 +1274,8 @@ Produce: (1) a welcome email from the manager covering first-day logistics, atta
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Outlook</span><span class="app-pill">Teams</span><span class="app-pill">Word</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Last_Year_Review.docx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Goals_2025.xlsx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-12-perf-review-prep_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (2 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-12-perf-review-prep/Last_Year_Review.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> Last_Year_Review.docx</a><a class="file-pill" href="files/cowork/UC-12-perf-review-prep/Goals_2025.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Goals_2025.xlsx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Assemble year evidence and draft the review</span></div><div class="prompt-box" id="cw-uc-perf-review-prep-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-perf-review-prep-1')">📋 Copy</button>[EMPLOYEE] is up for annual review. Pull: their last review at /HR/Reviews/[EMPLOYEE]/; their FY[X] goals; the last 12 months of Outlook and Teams - look for kudos, project completions, customer feedback, and peer-to-peer messages where they were named; any 360 feedback already collected.
 
@@ -1301,8 +1306,8 @@ Produce a draft Word performance review covering: (a) goal achievement against t
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">Excel</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Account_Plan.docx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Pipeline.xlsx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-13-account-brief_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (2 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-13-account-brief/Account_Plan.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> Account_Plan.docx</a><a class="file-pill" href="files/cowork/UC-13-account-brief/Pipeline.xlsx" download title="Click to download"><span class="ext ext-xlsx">XLSX</span> Pipeline.xlsx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the meeting brief</span></div><div class="prompt-box" id="cw-uc-account-brief-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-account-brief-1')">📋 Copy</button>I have a meeting with [CLIENT] on [DATE]. Pull: the account plan; our pipeline with this account (last 12 months); recent emails to/from the account team (last 60 days); support tickets from the customer; any news mentions on the company in the last 90 days from our internal news clipping folder.
 
@@ -1339,8 +1344,8 @@ Save as &#x27;AccountBrief_[CLIENT]_[DATE].docx&#x27; to /Sales/Briefs/.</div></
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">Teams</span><span class="app-pill">Outlook</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Incident_Bridge_Notes.docx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-14-incident-postmortem_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (1 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-14-incident-postmortem/Incident_Bridge_Notes.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> Incident_Bridge_Notes.docx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Assemble the postmortem</span></div><div class="prompt-box" id="cw-uc-incident-postmortem-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-incident-postmortem-1')">📋 Copy</button>Incident [INCIDENT_ID] on [DATE] is closed. Assemble the postmortem. Pull: Teams chat from #incident-[INCIDENT_ID] (or the bridge channel); on-call paging logs; the incident bridge notes; customer comms drafts.
 
@@ -1379,8 +1384,8 @@ Save as &#x27;Postmortem_[INCIDENT_ID].docx&#x27; to /IT/Incidents/[INCIDENT_ID]
         <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
         <div class="cw-section-label">APPS INVOLVED</div>
         <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">PowerPoint</span><span class="app-pill">Outlook</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Campaign_Brief.docx</span></div>
+        <div class="cw-section-label cw-files-label">SAMPLE INPUTS &nbsp;<a class="cw-download-all" href="files/cowork/UC-15-campaign-launch_All_Samples.zip" download title="Download all sample files as a single ZIP">⬇ Download all (1 files, .zip)</a></div>
+        <div class="cw-pills"><a class="file-pill" href="files/cowork/UC-15-campaign-launch/Campaign_Brief.docx" download title="Click to download"><span class="ext ext-docx">DOCX</span> Campaign_Brief.docx</a></div>
         <div class="cw-section-label">PROMPTS</div>
         <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Assemble the launch bundle</span></div><div class="prompt-box" id="cw-uc-campaign-launch-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-campaign-launch-1')">📋 Copy</button>Campaign [CAMPAIGN_NAME] launches on [DATE]. Read the campaign brief at /Marketing/Campaigns/[CAMPAIGN_NAME]/Brief.docx and the brand guidelines at /Marketing/Brand/.
 
