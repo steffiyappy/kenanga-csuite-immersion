@@ -2,7 +2,7 @@
 
 A 2-hour, password-gated, single-page Microsoft 365 Copilot immersion experience for the **C-suite of Contoso Investment Bank Berhad** (Group CEO, CFO, COO, CIO).
 
-🔗 **Live:** https://steffiyappy.github.io/kenanga-csuite-immersion/
+🔗 **Live:** https://steffiyappy.github.io/contoso-csuite-immersion/
 
 🔐 The session password is distributed separately to attendees.
 
