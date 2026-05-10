@@ -176,7 +176,8 @@ table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
   .prompt-box{font-size:.83rem;padding:10px 10px 38px}
 }
 
-/* === COWORK LIBRARY === */
+
+/* === COWORK-LIB-CSS-START === */
 .cw-hero{background:linear-gradient(135deg,#FAFBFF 0%,#F0F6FF 100%);border:1px solid var(--mgrey);border-radius:16px;padding:32px 36px;margin-bottom:24px}
 .cw-eyebrow{display:inline-block;background:#E0E7FF;color:#4338CA;font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:5px 12px;border-radius:99px;margin-bottom:14px}
 .cw-h1{font-size:2.6rem;color:#0F172A;line-height:1.05;margin-bottom:14px;font-weight:700}
@@ -243,6 +244,7 @@ table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
   .cw-h1{font-size:2rem}
   .cw-filter-label{min-width:auto}
 }
+/* === COWORK-LIB-CSS-END === */
 
 </style>
 </head>
@@ -285,7 +287,7 @@ table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
       <div class="nav-section">Resources</div>
       <a href="javascript:void(0)" onclick="show('usecases')" id="nav-usecases">📋 Use Cases</a>
       <a href="javascript:void(0)" onclick="show('tips')"  id="nav-tips">💡 Prompting Tips</a>
-      <a href="javascript:void(0)" onclick="show('cowork')"  id="nav-cowork">🤝 Cowork Library</a>
+      <!-- COWORK-LIB-NAV-START --><a href="javascript:void(0)" onclick="show('cowork')"  id="nav-cowork">🤝 Cowork Library</a><!-- COWORK-LIB-NAV-END -->
     </nav>
   </div>
 
@@ -849,12 +851,13 @@ table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
       </div>
     </div>
 
-  <!-- COWORK LIBRARY -->
+  <!-- COWORK-LIB-PAGE-START -->
+<!-- COWORK LIBRARY -->
     <div id="page-cowork" class="page">
       <div class="cw-hero">
-        <div class="cw-eyebrow">COPY-PASTE READY · 29 USE CASES</div>
+        <div class="cw-eyebrow">COPY-PASTE READY · 15 USE CASES</div>
         <h1 class="cw-h1">Cowork <span class="cw-h1-accent">Runbook</span></h1>
-        <p class="cw-lede">29 end-to-end Cowork prompts spanning industries and departments. Each one orchestrates a multi-step workflow from your uploaded files to a finished deliverable. Filter by industry or department, then open a card to copy the prompt.</p>
+        <p class="cw-lede">15 end-to-end Cowork prompts for the investment-bank functional teams &mdash; Risk &amp; Credit, Compliance, Finance, Strategy, IT, HR, Procurement and Sales &amp; Marketing. Each one orchestrates a multi-step workflow from your uploaded files to a finished deliverable. Filter by department, then open a card to copy the prompt.</p>
         <div class="cw-context-note">
           <strong>Heads up:</strong> Cowork is a Microsoft 365 Copilot Frontier-program experience. If your tenant is not yet enrolled, the agent panel will not show the Cowork tile. Researcher Critique &amp; Council, Analyst, Word/Excel/PowerPoint Copilot, and Agent Builder all work on the standard M365 Copilot license.
         </div>
@@ -862,22 +865,17 @@ table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
 
       <div class="cw-filter-bar">
         <div class="cw-filter-group">
-          <span class="cw-filter-label">Industry</span>
-          <div class="cw-chips"><button class="cw-chip cw-chip-industry active" data-filter="industry" data-value="all">All</button><button class="cw-chip cw-chip-industry" data-filter="industry" data-value="banking">Banking</button><button class="cw-chip cw-chip-industry" data-filter="industry" data-value="healthcare">Healthcare</button><button class="cw-chip cw-chip-industry" data-filter="industry" data-value="manufacturing">Manufacturing</button><button class="cw-chip cw-chip-industry" data-filter="industry" data-value="retail">Retail</button><button class="cw-chip cw-chip-industry" data-filter="industry" data-value="public-sector">Public Sector</button><button class="cw-chip cw-chip-industry" data-filter="industry" data-value="insurance">Insurance</button><button class="cw-chip cw-chip-industry" data-filter="industry" data-value="professional-services">Professional Services</button><button class="cw-chip cw-chip-industry" data-filter="industry" data-value="cross-industry">Cross-industry</button></div>
-        </div>
-        <div class="cw-filter-group">
           <span class="cw-filter-label">Department</span>
-          <div class="cw-chips"><button class="cw-chip cw-chip-dept active" data-filter="dept" data-value="all">All</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="risk-credit">Risk &amp; Credit</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="legal-compliance">Legal &amp; Compliance</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="operations">Operations</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="hr">HR</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="it">IT</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="procurement">Procurement</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="sales-marketing">Sales &amp; Marketing</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="strategy">Strategy</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="customer-service">Customer Service</button></div>
+          <div class="cw-chips"><button class="cw-chip cw-chip-dept active" data-filter="dept" data-value="all">All</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="risk-credit">Risk &amp; Credit</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="legal-compliance">Legal &amp; Compliance</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="operations">Operations</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="hr">HR</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="it">IT</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="procurement">Procurement</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="sales-marketing">Sales &amp; Marketing</button><button class="cw-chip cw-chip-dept" data-filter="dept" data-value="strategy">Strategy</button></div>
         </div>
       </div>
 
       <div class="cw-grid">
         
-    <article class="cw-card" data-industry="banking" data-dept="risk-credit" data-complexity="advanced">
+    <article class="cw-card" data-industry="investment-bank" data-dept="risk-credit" data-complexity="advanced">
       <div class="cw-num">UC 01</div>
       <h3 class="cw-title">Credit Underwriting Pack</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Banking</span>
         <span class="cw-badge cw-badge-dept">Risk &amp; Credit</span>
         <span class="cw-badge cw-badge-advanced">Advanced</span>
       </div>
@@ -916,11 +914,10 @@ Cite statement sections and note numbers when highlighting findings. Do not fabr
     </article>
     
 
-    <article class="cw-card" data-industry="banking" data-dept="risk-credit" data-complexity="advanced">
+    <article class="cw-card" data-industry="investment-bank" data-dept="risk-credit" data-complexity="advanced">
       <div class="cw-num">UC 02</div>
       <h3 class="cw-title">Investment Council of Agents</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Banking</span>
         <span class="cw-badge cw-badge-dept">Risk &amp; Credit</span>
         <span class="cw-badge cw-badge-advanced">Advanced</span>
       </div>
@@ -956,11 +953,10 @@ Finally analyse all five views together for recommendations, evidence, assumptio
     </article>
     
 
-    <article class="cw-card" data-industry="banking" data-dept="legal-compliance" data-complexity="intermediate">
+    <article class="cw-card" data-industry="investment-bank" data-dept="legal-compliance" data-complexity="intermediate">
       <div class="cw-num">UC 03</div>
       <h3 class="cw-title">UBO Diagram &amp; KYC PDF</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Banking</span>
         <span class="cw-badge cw-badge-dept">Legal &amp; Compliance</span>
         <span class="cw-badge cw-badge-intermediate">Intermediate</span>
       </div>
@@ -987,11 +983,10 @@ Finally analyse all five views together for recommendations, evidence, assumptio
     </article>
     
 
-    <article class="cw-card" data-industry="banking" data-dept="operations" data-complexity="intermediate">
+    <article class="cw-card" data-industry="investment-bank" data-dept="operations" data-complexity="intermediate">
       <div class="cw-num">UC 04</div>
       <h3 class="cw-title">Bank Statement Extraction</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Banking</span>
         <span class="cw-badge cw-badge-dept">Operations</span>
         <span class="cw-badge cw-badge-intermediate">Intermediate</span>
       </div>
@@ -1027,11 +1022,10 @@ Save as &#x27;Statements_Consolidated_[CUSTOMER]_[DATE].xlsx&#x27; to /Operation
     </article>
     
 
-    <article class="cw-card" data-industry="banking" data-dept="risk-credit" data-complexity="intermediate">
+    <article class="cw-card" data-industry="investment-bank" data-dept="risk-credit" data-complexity="intermediate">
       <div class="cw-num">UC 05</div>
       <h3 class="cw-title">Financial Spreading</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Banking</span>
         <span class="cw-badge cw-badge-dept">Risk &amp; Credit</span>
         <span class="cw-badge cw-badge-intermediate">Intermediate</span>
       </div>
@@ -1062,11 +1056,10 @@ Flag any unmapped line items at the bottom of the workbook in a sheet called &#x
     </article>
     
 
-    <article class="cw-card" data-industry="banking" data-dept="strategy" data-complexity="advanced">
+    <article class="cw-card" data-industry="investment-bank" data-dept="strategy" data-complexity="advanced">
       <div class="cw-num">UC 06</div>
       <h3 class="cw-title">Cashflow Model -&gt; Interactive App</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Banking</span>
         <span class="cw-badge cw-badge-dept">Strategy</span>
         <span class="cw-badge cw-badge-advanced">Advanced</span>
       </div>
@@ -1093,11 +1086,10 @@ Flag any unmapped line items at the bottom of the workbook in a sheet called &#x
     </article>
     
 
-    <article class="cw-card" data-industry="banking" data-dept="risk-credit" data-complexity="advanced">
+    <article class="cw-card" data-industry="investment-bank" data-dept="risk-credit" data-complexity="advanced">
       <div class="cw-num">UC 07</div>
       <h3 class="cw-title">Underwriting Model -&gt; Decision Engine</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Banking</span>
         <span class="cw-badge cw-badge-dept">Risk &amp; Credit</span>
         <span class="cw-badge cw-badge-advanced">Advanced</span>
       </div>
@@ -1124,11 +1116,10 @@ Flag any unmapped line items at the bottom of the workbook in a sheet called &#x
     </article>
     
 
-    <article class="cw-card" data-industry="cross-industry" data-dept="it" data-complexity="advanced">
+    <article class="cw-card" data-industry="investment-bank" data-dept="it" data-complexity="advanced">
       <div class="cw-num">UC 08</div>
       <h3 class="cw-title">IT Governance Compliance Check</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Cross-industry</span>
         <span class="cw-badge cw-badge-dept">IT</span>
         <span class="cw-badge cw-badge-advanced">Advanced</span>
       </div>
@@ -1162,11 +1153,10 @@ For each Critical and High exception, draft an email to the change owner listing
     </article>
     
 
-    <article class="cw-card" data-industry="cross-industry" data-dept="procurement" data-complexity="advanced">
+    <article class="cw-card" data-industry="investment-bank" data-dept="procurement" data-complexity="advanced">
       <div class="cw-num">UC 09</div>
       <h3 class="cw-title">RFP Scoring &amp; IC Paper</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Cross-industry</span>
         <span class="cw-badge cw-badge-dept">Procurement</span>
         <span class="cw-badge cw-badge-advanced">Advanced</span>
       </div>
@@ -1201,11 +1191,10 @@ Save the scorecard as &#x27;RFP_Scorecard_[PROJECT].xlsx&#x27; and the memo as &
     </article>
     
 
-    <article class="cw-card" data-industry="cross-industry" data-dept="legal-compliance" data-complexity="advanced">
+    <article class="cw-card" data-industry="investment-bank" data-dept="legal-compliance" data-complexity="advanced">
       <div class="cw-num">UC 10</div>
       <h3 class="cw-title">Contract Renewal Intelligence</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Cross-industry</span>
         <span class="cw-badge cw-badge-dept">Legal &amp; Compliance</span>
         <span class="cw-badge cw-badge-advanced">Advanced</span>
       </div>
@@ -1236,11 +1225,10 @@ Produce: (1) Excel renewal pipeline ranked by priority; (2) one Word renegotiati
     </article>
     
 
-    <article class="cw-card" data-industry="cross-industry" data-dept="hr" data-complexity="intermediate">
+    <article class="cw-card" data-industry="investment-bank" data-dept="hr" data-complexity="intermediate">
       <div class="cw-num">UC 11</div>
       <h3 class="cw-title">New Joiner Onboarding Bundle</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Cross-industry</span>
         <span class="cw-badge cw-badge-dept">HR</span>
         <span class="cw-badge cw-badge-intermediate">Intermediate</span>
       </div>
@@ -1269,11 +1257,10 @@ Produce: (1) a welcome email from the manager covering first-day logistics, atta
     </article>
     
 
-    <article class="cw-card" data-industry="cross-industry" data-dept="hr" data-complexity="basic">
+    <article class="cw-card" data-industry="investment-bank" data-dept="hr" data-complexity="basic">
       <div class="cw-num">UC 12</div>
       <h3 class="cw-title">Performance Review Prep</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Cross-industry</span>
         <span class="cw-badge cw-badge-dept">HR</span>
         <span class="cw-badge cw-badge-basic">Basic</span>
       </div>
@@ -1302,550 +1289,10 @@ Produce a draft Word performance review covering: (a) goal achievement against t
     </article>
     
 
-    <article class="cw-card" data-industry="healthcare" data-dept="operations" data-complexity="advanced">
+    <article class="cw-card" data-industry="investment-bank" data-dept="sales-marketing" data-complexity="intermediate">
       <div class="cw-num">UC 13</div>
-      <h3 class="cw-title">Case Conference Prep</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Healthcare</span>
-        <span class="cw-badge cw-badge-dept">Operations</span>
-        <span class="cw-badge cw-badge-advanced">Advanced</span>
-      </div>
-      <p class="cw-desc">Assembles the full evidence pack for multidisciplinary case conferences - tumor boards, complex case reviews, ethics consults - pulling every relevant document, recent correspondence, and imaging report for each case on the agenda.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">SharePoint</span><span class="app-pill">Outlook</span><span class="app-pill">Teams</span><span class="app-pill">PowerPoint</span><span class="app-pill">Word</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Case_Agenda.docx</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Assemble case materials</span></div><div class="prompt-box" id="cw-uc-case-conference-prep-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-case-conference-prep-1')">📋 Copy</button>Prepare case materials for the [CONFERENCE_NAME] on [CONFERENCE_DATE]. Cases on today&#x27;s agenda: [CASE_LIST_OR_AGENDA_DOC].
-
-For each case:
-1. Pull the most recent clinical documents from /Clinical/Cases/[CASE_ID]/ - pathology, imaging reports, prior consult notes.
-2. Search Outlook for correspondence in the last 60 days referencing [CASE_ID] or the patient identifier - flag any external specialist input.
-3. Search the [CARE_TEAM_CHANNEL] Teams channel for discussion threads about this case.
-4. Identify the presenting clinician and the specific question being brought to the board.
-
-Build a PowerPoint deck titled &#x27;[CONFERENCE_NAME] - [CONFERENCE_DATE]&#x27; with: one cover slide; 2-3 slides per case (Case Summary, Key Imaging/Pathology Findings, Specific Question for the Board, Prior Discussion Points).
-
-Build a Word companion doc with full references and citations for each case.
-
-Save both to /Clinical/Case Conferences/[CONFERENCE_DATE]/. Apply the [SENSITIVITY_LABEL] label.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>The &#x27;specific question for the board&#x27; framing makes each case actionable rather than an academic recap. Add &#x27;also flag any cases where external specialist input was requested but not received&#x27; to surface gaps before the meeting.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Requires well-organised case folders with consistent naming. Without that, Cowork can&#x27;t reliably find the right documents. This is the pre-meeting evidence pack - clinical decisions still come from the room.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="healthcare" data-dept="operations" data-complexity="intermediate">
-      <div class="cw-num">UC 14</div>
-      <h3 class="cw-title">Clinical Audit &amp; Quality Pack</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Healthcare</span>
-        <span class="cw-badge cw-badge-dept">Operations</span>
-        <span class="cw-badge cw-badge-intermediate">Intermediate</span>
-      </div>
-      <p class="cw-desc">A monthly QI dashboard from incident reports, complaints, and compliance metrics becomes a board-ready quality report with themes and action follow-ups.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Quality_KPIs.xlsx</span><span class="file-pill"><span class="ext ext-folder">FOLDER</span> /Quality/Incidents/</span><span class="file-pill"><span class="ext ext-folder">FOLDER</span> /Quality/Complaints/</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the monthly QI summary</span></div><div class="prompt-box" id="cw-uc-clinical-quality-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-clinical-quality-1')">📋 Copy</button>Pull the last 30 days of incident reports from /Quality/Incidents/, complaints from /Quality/Complaints/, and compliance metrics from /Quality/KPIs/[MONTH].xlsx.
-
-Produce a one-page Quality Improvement summary with:
-(a) Headline metrics (HAIs, falls, medication errors, complaints, never-events) vs target with RAG status
-(b) Trend chart for each metric over the last 6 months
-(c) Top 3 themes from incident narratives
-(d) Top 3 themes from complaints narratives
-(e) Corrective actions overdue by owner
-
-Save as &#x27;QI_Summary_[MONTH].docx&#x27; to /Quality/Board Reports/. Apply [SENSITIVITY_LABEL].</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>Themed narratives surface patterns the dashboard would otherwise hide. The overdue actions list keeps owner accountability live.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Themes are extracted from the narratives Cowork can read. If incidents are reported with terse free-text, themes will be coarse. Improving incident report quality compounds this prompt&#x27;s value.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="healthcare" data-dept="operations" data-complexity="intermediate">
-      <div class="cw-num">UC 15</div>
-      <h3 class="cw-title">Patient Journey Coordination</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Healthcare</span>
-        <span class="cw-badge cw-badge-dept">Operations</span>
-        <span class="cw-badge cw-badge-intermediate">Intermediate</span>
-      </div>
-      <p class="cw-desc">For a discharged patient, assemble all next-step appointments, referrals, prior auths, plus a plain-English family-facing letter explaining the next 90 days.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Outlook</span><span class="app-pill">Teams</span><span class="app-pill">SharePoint</span><span class="app-pill">Word</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Discharge_Summary.docx</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the coordination plan</span></div><div class="prompt-box" id="cw-uc-patient-coordination-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-patient-coordination-1')">📋 Copy</button>Patient [PATIENT_ID] has been discharged from [SPECIALTY] today. Pull the discharge summary from /Clinical/Discharges/[PATIENT_ID]/, the consultation notes from the last 90 days, and any pending referrals from Outlook (last 30 days, subject contains [PATIENT_ID]).
-
-Identify every next step required: outpatient appointments to schedule, referrals to chase, prior authorisations to lodge, home-care arrangements.
-
-Produce: (1) a coordination Word doc for the case manager with each step, owner, due date, status; (2) a plain-English family letter explaining the next 90 days. Apply [SENSITIVITY_LABEL]. Save to /Clinical/CaseManagement/[PATIENT_ID]/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>Surfacing pending referrals from Outlook before the patient leaves the ward is the highest-impact step - it prevents post-discharge fall-through.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Cowork can find what&#x27;s in our systems. It cannot reliably catch referrals that were verbally agreed but never documented. Pair with a verbal handover.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="manufacturing" data-dept="operations" data-complexity="advanced">
-      <div class="cw-num">UC 16</div>
-      <h3 class="cw-title">Supply Chain Disruption Briefing</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Manufacturing</span>
-        <span class="cw-badge cw-badge-dept">Operations</span>
-        <span class="cw-badge cw-badge-advanced">Advanced</span>
-      </div>
-      <p class="cw-desc">A supplier outage or geopolitical event becomes a SKU-level impact briefing for the COO with mitigation options and ready-to-send Teams + customer comms.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">Outlook</span><span class="app-pill">Teams</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Disruption_Notice.docx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Supplier_Register.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Open_POs.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> BOM.xlsx</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Brief the COO on impact + mitigations</span></div><div class="prompt-box" id="cw-uc-supply-chain-disruption-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-supply-chain-disruption-1')">📋 Copy</button>A disruption has been declared for [EVENT/SUPPLIER]. Read the disruption notice (/Ops/Disruptions/[EVENT].docx), our supplier register (/Ops/Suppliers/Register.xlsx), our active POs (/Ops/POs/Open.xlsx), and our SKU bill of materials (/Ops/BOM/[YEAR].xlsx).
-
-Produce a COO briefing that:
-(a) Lists every SKU with exposure to the affected supplier(s), with revenue and margin impact over a 4-week, 12-week and 6-month horizon
-(b) Identifies alternate qualified suppliers from the register and notes any qualification time required
-(c) Drafts an internal Teams message to the Ops leadership channel with the headline impact and the top 3 mitigation actions
-(d) Drafts an email to affected customer account managers with talking points
-
-Save as &#x27;Disruption_Brief_[EVENT]_[DATE].docx&#x27; to /Ops/Disruptions/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>Three time horizons (4-week, 12-week, 6-month) prevent everyone treating it as either short-term panic or long-term strategy.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Cowork uses the supplier register and POs we have. Tier-2/3 dependencies (suppliers&#x27; suppliers) won&#x27;t surface without that data being captured first.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="manufacturing" data-dept="operations" data-complexity="intermediate">
-      <div class="cw-num">UC 17</div>
-      <h3 class="cw-title">Quality Incident Root-Cause Pack</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Manufacturing</span>
-        <span class="cw-badge cw-badge-dept">Operations</span>
-        <span class="cw-badge cw-badge-intermediate">Intermediate</span>
-      </div>
-      <p class="cw-desc">A quality incident becomes a structured 5-Why root cause analysis, a CAPA owner-by-owner, and a Pareto chart of related incidents from the same line.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">Excel</span><span class="app-pill">Teams</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Incident_Report.docx</span><span class="file-pill"><span class="ext ext-docx">DOCX</span> SOP.docx</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">RCA + CAPA + pattern check</span></div><div class="prompt-box" id="cw-uc-quality-incident-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-quality-incident-1')">📋 Copy</button>Incident [INCIDENT_ID] has been logged. Read the incident report at /Quality/Incidents/[INCIDENT_ID]/, the related SOP, the last 90 days of Teams discussion in #[PRODUCTION_LINE], and the previous 6 months of incidents from the same line.
-
-Produce:
-(a) A 5-Why root cause analysis with the most likely root cause(s) called out
-(b) A Corrective and Preventive Action plan with owner, due date, evidence required for each action
-(c) A Pareto chart of the last 6 months of incident causes from this line, to show whether this is a one-off or a pattern
-
-Save as &#x27;5Why_[INCIDENT_ID].docx&#x27; and &#x27;CAPA_[INCIDENT_ID].xlsx&#x27; to /Quality/Incidents/[INCIDENT_ID]/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>The Pareto on past 6 months is the difference between treating one incident vs treating the system. Don&#x27;t skip it.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>5-Why is only as good as the inputs. If the operator narrative is thin, Cowork will produce thin Whys. Augment with operator interview before signing off the RCA.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="manufacturing" data-dept="operations" data-complexity="intermediate">
-      <div class="cw-num">UC 18</div>
-      <h3 class="cw-title">Plant Performance Weekly</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Manufacturing</span>
-        <span class="cw-badge cw-badge-dept">Operations</span>
-        <span class="cw-badge cw-badge-intermediate">Intermediate</span>
-      </div>
-      <p class="cw-desc">Pull plant KPIs, build the weekly OEE dashboard, and draft the plant manager&#x27;s update email - all in one prompt.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">Outlook</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> OEE.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Quality.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Safety.xlsx</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the weekly pack</span></div><div class="prompt-box" id="cw-uc-plant-weekly-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-plant-weekly-1')">📋 Copy</button>Build the weekly plant performance pack for week ending [DATE]. Sources: /Plant/[SITE]/OEE/[WEEK].xlsx, /Plant/[SITE]/Quality/[WEEK].xlsx, /Plant/[SITE]/Safety/[WEEK].xlsx.
-
-Produce:
-(a) A one-page dashboard with OEE, FPY, scrap rate, safety incidents, and downtime root causes by severity
-(b) A comparison vs prior week and prior 4-week average with arrows
-(c) A draft email to the Site Director and Operations Director summarising the headline, the one improvement, the one concern, and the action being taken
-
-Save as &#x27;Plant_Weekly_[SITE]_[WEEK].docx&#x27;.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>&#x27;One improvement, one concern, one action&#x27; forces the plant manager to make calls rather than report a wall of numbers.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Cowork only sees what&#x27;s in the weekly files. Real-time MES/SCADA data isn&#x27;t ingested unless you&#x27;ve already exported it to those locations.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="retail" data-dept="operations" data-complexity="intermediate">
-      <div class="cw-num">UC 19</div>
-      <h3 class="cw-title">Store Performance Triage</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Retail</span>
-        <span class="cw-badge cw-badge-dept">Operations</span>
-        <span class="cw-badge cw-badge-intermediate">Intermediate</span>
-      </div>
-      <p class="cw-desc">For a regional manager with N stores, identify which are underperforming this week and draft store-by-store action emails to the store managers.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">Outlook</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Sales_Week.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Shrinkage.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> NPS.xlsx</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Identify the bottom 5 and draft emails</span></div><div class="prompt-box" id="cw-uc-store-triage-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-store-triage-1')">📋 Copy</button>I manage [N] stores in [REGION]. Pull this week&#x27;s sales (/Retail/Sales/[WEEK].xlsx), shrinkage, footfall, NPS, and labour cost ratio per store.
-
-Identify the top 5 underperforming stores by composite score (revenue vs target x NPS x shrinkage). For each, draft a Word brief with: (a) the metric/s breaking down; (b) plausible drivers based on the data trend; (c) a list of 3 specific questions the regional manager should ask the store manager.
-
-Then draft 5 individual emails to the affected store managers with the specific questions. Save to /Retail/Triage/[WEEK]/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>Composite score prevents single-metric noise from triggering false alarms. The &#x27;questions to ask&#x27; frame keeps it a conversation, not an accusation.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Cowork ranks based on the data. Local context (a road closure, a competitor opening) requires the regional manager&#x27;s judgement before the emails are sent.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="retail" data-dept="sales-marketing" data-complexity="intermediate">
-      <div class="cw-num">UC 20</div>
-      <h3 class="cw-title">Promotion Post-Mortem</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Retail</span>
-        <span class="cw-badge cw-badge-dept">Sales &amp; Marketing</span>
-        <span class="cw-badge cw-badge-intermediate">Intermediate</span>
-      </div>
-      <p class="cw-desc">A promotion ended - pull lift, margin, channel mix, and cannibalisation data and produce a 6-slide post-mortem with a clear extend/repeat/kill recommendation.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">PowerPoint</span><span class="app-pill">Word</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Promo_Sales.xlsx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Channel_Mix.xlsx</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the 6-slide post-mortem</span></div><div class="prompt-box" id="cw-uc-promo-postmortem-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-promo-postmortem-1')">📋 Copy</button>Promotion [PROMO_NAME] ran from [START] to [END]. Pull sales data from /Marketing/Promo/[PROMO_NAME]/, comparable prior-period data, and channel mix data.
-
-Produce a 6-slide PowerPoint:
-1. Cover
-2. Headline lift in revenue and units, vs target
-3. Margin impact (gross margin per unit vs base period)
-4. Channel mix (online, in-store, partner) vs base period
-5. Cannibalisation analysis on adjacent SKUs
-6. Recommendations: extend, repeat, kill, or rework
-
-Save as &#x27;PostMortem_[PROMO_NAME].pptx&#x27; to /Marketing/PostMortems/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>Cannibalisation analysis is what prevents a &#x27;win&#x27; on the promoted SKU from masking a loss on adjacent SKUs.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Margin uplift depends on data quality of cost-of-goods at SKU level. If COGS isn&#x27;t clean, margin numbers are directional, not exact.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="public-sector" data-dept="customer-service" data-complexity="intermediate">
-      <div class="cw-num">UC 21</div>
-      <h3 class="cw-title">Constituent Inquiry Triage</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Public Sector</span>
-        <span class="cw-badge cw-badge-dept">Customer Service</span>
-        <span class="cw-badge cw-badge-intermediate">Intermediate</span>
-      </div>
-      <p class="cw-desc">A week of constituent emails and letters becomes a triaged response queue with draft replies, an escalation list, and an immediate-action queue for safeguarding cases.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Outlook</span><span class="app-pill">Word</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-folder">FOLDER</span> Constituent inbox / shared mailbox</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Triage and draft responses</span></div><div class="prompt-box" id="cw-uc-constituent-triage-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-constituent-triage-1')">📋 Copy</button>Read the last [N] days of inbound constituent communications from [INBOX/SHARED FOLDER]. For each, classify: subject area (housing, transport, immigration, taxation, benefits), urgency (statutory deadline, vulnerable individual, MP commitment, routine), and the policy or service desk that owns it.
-
-Produce a triage spreadsheet with one row per inquiry. For routine inquiries, draft a response based on our standard response library at /CaseWork/StandardResponses/. For escalations, draft a covering note to the relevant policy lead.
-
-Flag any inquiry that mentions safeguarding, suicide, or domestic violence to a Senior Caseworker queue immediately. Save to /CaseWork/[WEEK]/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>The safeguarding flag triggers immediate human review and escalation to the senior caseworker - never automate this away.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Standard responses are good for routine cases but bad for the 5% that genuinely need a human. The triage classification is the value, not the auto-replies.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="public-sector" data-dept="strategy" data-complexity="advanced">
-      <div class="cw-num">UC 22</div>
-      <h3 class="cw-title">Policy Briefing Pack</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Public Sector</span>
-        <span class="cw-badge cw-badge-dept">Strategy</span>
-        <span class="cw-badge cw-badge-advanced">Advanced</span>
-      </div>
-      <p class="cw-desc">A new policy decision is needed - assemble background, evidence, options, an oral briefing for the Minister, and a Q&amp;A with the 10 most likely questions.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">PowerPoint</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-folder">FOLDER</span> /Policy/[TOPIC]/</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the Minister&#x27;s briefing pack</span></div><div class="prompt-box" id="cw-uc-policy-briefing-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-policy-briefing-1')">📋 Copy</button>The Minister has asked for a briefing on [TOPIC] by [DEADLINE]. Pull every document we hold on this topic from /Policy/[TOPIC]/, summaries of related parliamentary questions and select committee transcripts, and any consultation responses.
-
-Produce:
-(a) A 2-page background note with the policy history, current state, and key stakeholders
-(b) An Options Annex listing 3 options with cost, time-to-implement, political risk, and likely media reception for each
-(c) A draft 5-minute oral briefing the Minister can use
-(d) A Q&amp;A with the 10 most likely questions and suggested lines
-
-Apply [CLASSIFICATION] label. Save to /Policy/[TOPIC]/Briefing_[DATE]/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>The &#x27;likely media reception&#x27; field forces honest assessment of optics before the Minister is in front of cameras.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Q&amp;A lines are starting drafts - they need political nuance and current-affairs awareness that the Minister&#x27;s office will add.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="insurance" data-dept="operations" data-complexity="advanced">
-      <div class="cw-num">UC 23</div>
-      <h3 class="cw-title">Claim Investigation Pack</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Insurance</span>
-        <span class="cw-badge cw-badge-dept">Operations</span>
-        <span class="cw-badge cw-badge-advanced">Advanced</span>
-      </div>
-      <p class="cw-desc">A complex claim becomes a full investigation pack: chronology, policy coverage analysis with clause references, reserve adequacy, red flags with confidence ratings, and a settle/investigate/decline/SIU recommendation.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">Excel</span><span class="app-pill">Teams</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-pdf">PDF</span> FNOL.pdf</span><span class="file-pill"><span class="ext ext-folder">FOLDER</span> /Claims/Documents/</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Assemble the investigation pack</span></div><div class="prompt-box" id="cw-uc-claim-investigation-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-claim-investigation-1')">📋 Copy</button>Claim [CLAIM_ID] requires investigation. Pull: the FNOL, claim correspondence (last 90 days), all submitted documents, the policy wording, the customer&#x27;s prior claims history (5-year), and any third-party reports.
-
-Produce a Claims Investigation Pack with:
-(a) Chronology of events from FNOL to today
-(b) Policy coverage analysis - what&#x27;s in scope, what&#x27;s excluded, with specific clause references
-(c) Reserve adequacy assessment based on the latest information
-(d) Red flags (multiple claims, inconsistencies in statements, suspect circumstances) - list each with the supporting evidence and a confidence rating
-(e) Recommendation: settle, investigate further, decline, or refer to SIU
-
-Save as &#x27;Investigation_[CLAIM_ID].docx&#x27; to /Claims/Investigations/[CLAIM_ID]/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>Confidence ratings on red flags prevent over-confident SIU referrals. Specific clause references make the coverage analysis defensible if the customer disputes.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Cowork sees what we have on file. Telematics, third-party intel, and physical inspection findings still need to be added by the investigator.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="insurance" data-dept="risk-credit" data-complexity="intermediate">
-      <div class="cw-num">UC 24</div>
-      <h3 class="cw-title">Underwriting Renewal Bundle</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Insurance</span>
-        <span class="cw-badge cw-badge-dept">Risk &amp; Credit</span>
-        <span class="cw-badge cw-badge-intermediate">Intermediate</span>
-      </div>
-      <p class="cw-desc">A commercial policy is up for renewal - pull loss history, broker submissions, exposure changes, and produce a renewal scoresheet with a recommended quote and a broker letter.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">Outlook</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> Current_Policy.docx</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Loss_History.xlsx</span><span class="file-pill"><span class="ext ext-pdf">PDF</span> Broker_Submission.pdf</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Build the renewal bundle</span></div><div class="prompt-box" id="cw-uc-underwriting-renewal-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-underwriting-renewal-1')">📋 Copy</button>Policy [POLICY_ID] is up for renewal on [RENEWAL_DATE]. Pull: the current policy and schedule, the broker submission for renewal, the 5-year loss history, the current exposure schedule, and any market intelligence on the customer.
-
-Produce:
-(a) A renewal scoresheet with technical premium, market premium estimate, recommended quote, and the deviation from technical with rationale
-(b) A renewal letter draft for the broker
-(c) A list of 5 pre-renewal questions to send the broker now to firm up the quote
-
-Save to /Underwriting/Renewals/[POLICY_ID]/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>The 5 pre-renewal questions catch missing information before the quote goes hard - cheaper to ask now than to repaper later.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>Market premium is estimated from intelligence we hold. If the broker has fresh competing quotes, our estimate may be stale - treat as a starting position, not a firm number.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="professional-services" data-dept="sales-marketing" data-complexity="advanced">
-      <div class="cw-num">UC 25</div>
-      <h3 class="cw-title">Proposal &amp; RFP Response</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Professional Services</span>
-        <span class="cw-badge cw-badge-dept">Sales &amp; Marketing</span>
-        <span class="cw-badge cw-badge-advanced">Advanced</span>
-      </div>
-      <p class="cw-desc">A new RFP becomes a first-draft response built from your library of winning proposals, with content gaps and risk areas explicitly flagged.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Word</span><span class="app-pill">PowerPoint</span><span class="app-pill">Excel</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-docx">DOCX</span> RFP.docx</span><span class="file-pill"><span class="ext ext-folder">FOLDER</span> /Sales/PastProposals/</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Draft the proposal response</span></div><div class="prompt-box" id="cw-uc-rfp-response-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-rfp-response-1')">📋 Copy</button>We&#x27;ve received an RFP from [CLIENT] for [SERVICE]. Read the RFP at /Sales/RFPs/[CLIENT]/RFP.docx. Pull our past 10 winning proposals on similar topics from /Sales/PastProposals/, our case studies library, and our team CVs.
-
-For each section in the RFP scoring matrix:
-(a) Identify the strongest reusable content from past proposals
-(b) Flag any RFP requirement we cannot evidence today
-(c) Draft a first response
-
-Produce a master proposal Word doc with all sections drafted, plus a &#x27;Gaps &amp; Risks&#x27; annex listing what we cannot answer and what we need from the pursuit team. Save to /Sales/RFPs/[CLIENT]/Draft1/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>The Gaps &amp; Risks annex is what tells the pursuit lead where to spend their time - the rest of the response is reusable lift.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>First draft. The pursuit team adds the deal context, the story arc, and the win themes. Cowork removes the blank-page friction.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="professional-services" data-dept="risk-credit" data-complexity="advanced">
-      <div class="cw-num">UC 26</div>
-      <h3 class="cw-title">Audit Working Papers Bundle</h3>
-      <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Professional Services</span>
-        <span class="cw-badge cw-badge-dept">Risk &amp; Credit</span>
-        <span class="cw-badge cw-badge-advanced">Advanced</span>
-      </div>
-      <p class="cw-desc">For an audit area, pull source documents, evidence, prior-year working papers and produce a draft working paper bundle ready for the senior to review and sign off.</p>
-      <details class="cw-details">
-        <summary><span class="cw-open-label">Open prompt</span><span class="cw-arrow">→</span></summary>
-        <div class="cw-section-label">APPS INVOLVED</div>
-        <div class="cw-pills"><span class="app-pill">Excel</span><span class="app-pill">Word</span><span class="app-pill">SharePoint</span></div>
-        <div class="cw-section-label">SAMPLE INPUTS</div>
-        <div class="cw-pills"><span class="file-pill"><span class="ext ext-folder">FOLDER</span> /Audit/[CLIENT]/Prior Year/</span><span class="file-pill"><span class="ext ext-xlsx">XLSX</span> Trial_Balance.xlsx</span></div>
-        <div class="cw-section-label">PROMPTS</div>
-        <div class="cw-prompt"><div class="cw-prompt-head"><span class="cw-pnum">Prompt</span><span class="cw-plabel">Assemble the working paper bundle</span></div><div class="prompt-box" id="cw-uc-audit-working-papers-1"><button class="copy-btn" onclick="copyPrompt('cw-uc-audit-working-papers-1')">📋 Copy</button>For audit area [AREA] at client [CLIENT], assemble the Working Paper bundle. Pull prior-year working papers (/Audit/[CLIENT]/[PRIOR_YEAR]/[AREA]/), this year&#x27;s trial balance and supporting schedules, management&#x27;s narrative, and any related correspondence.
-
-Produce:
-(a) Lead Schedule with current year vs prior year and variances flagged
-(b) Substantive procedure programme tailored to risks identified
-(c) Sample selection log with selected items and basis
-(d) Findings &amp; Conclusions draft template ready for the Senior to fill in
-(e) Open Questions list for the audit team
-
-Save to /Audit/[CLIENT]/[CURRENT_YEAR]/[AREA]/.</div></div>
-        <div class="cw-grid2">
-          <div class="cw-callout cw-watch">
-            <div class="cw-callout-label">WHAT TO WATCH</div>
-            <p>The Open Questions list is what stops the senior signing off blind. Variance flags on the lead schedule trigger the substantive procedures.</p>
-          </div>
-          <div class="cw-callout cw-honest">
-            <div class="cw-callout-label">HONEST FRAMING</div>
-            <p>These are working drafts - independence and professional scepticism are still owned by the team. Use as preparation, not as conclusion.</p>
-          </div>
-        </div>
-      </details>
-    </article>
-    
-
-    <article class="cw-card" data-industry="cross-industry" data-dept="sales-marketing" data-complexity="intermediate">
-      <div class="cw-num">UC 27</div>
       <h3 class="cw-title">Account-Based Selling Brief</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Cross-industry</span>
         <span class="cw-badge cw-badge-dept">Sales &amp; Marketing</span>
         <span class="cw-badge cw-badge-intermediate">Intermediate</span>
       </div>
@@ -1880,11 +1327,10 @@ Save as &#x27;AccountBrief_[CLIENT]_[DATE].docx&#x27; to /Sales/Briefs/.</div></
     </article>
     
 
-    <article class="cw-card" data-industry="cross-industry" data-dept="it" data-complexity="intermediate">
-      <div class="cw-num">UC 28</div>
+    <article class="cw-card" data-industry="investment-bank" data-dept="it" data-complexity="intermediate">
+      <div class="cw-num">UC 14</div>
       <h3 class="cw-title">Major Incident Postmortem</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Cross-industry</span>
         <span class="cw-badge cw-badge-dept">IT</span>
         <span class="cw-badge cw-badge-intermediate">Intermediate</span>
       </div>
@@ -1921,11 +1367,10 @@ Save as &#x27;Postmortem_[INCIDENT_ID].docx&#x27; to /IT/Incidents/[INCIDENT_ID]
     </article>
     
 
-    <article class="cw-card" data-industry="cross-industry" data-dept="sales-marketing" data-complexity="intermediate">
-      <div class="cw-num">UC 29</div>
+    <article class="cw-card" data-industry="investment-bank" data-dept="sales-marketing" data-complexity="intermediate">
+      <div class="cw-num">UC 15</div>
       <h3 class="cw-title">Campaign Launch Bundle</h3>
       <div class="cw-badges">
-        <span class="cw-badge cw-badge-industry">Cross-industry</span>
         <span class="cw-badge cw-badge-dept">Sales &amp; Marketing</span>
         <span class="cw-badge cw-badge-intermediate">Intermediate</span>
       </div>
@@ -1965,7 +1410,7 @@ Save to /Marketing/Campaigns/[CAMPAIGN_NAME]/Launch_Bundle/.</div></div>
       <div class="cw-footer">
         <h3>How to use these prompts</h3>
         <ol>
-          <li><strong>Pick the matching use case.</strong> Filter by your industry or department.</li>
+          <li><strong>Pick the matching use case.</strong> Filter by department to find prompts for your team.</li>
           <li><strong>Read the description and Honest Framing.</strong> Confirm Cowork can actually do the work given the data you have.</li>
           <li><strong>Upload the sample inputs.</strong> Cowork can only see what you give it - bring the files, folders, and emails into the conversation first.</li>
           <li><strong>Copy the prompt and replace the [PLACEHOLDERS]</strong> with your specifics.</li>
@@ -1973,6 +1418,7 @@ Save to /Marketing/Campaigns/[CAMPAIGN_NAME]/Launch_Bundle/.</div></div>
         </ol>
       </div>
     </div>
+<!-- COWORK-LIB-PAGE-END -->
 
   </div><!-- /#main -->
   </div><!-- /#app -->
@@ -2049,7 +1495,7 @@ Save to /Marketing/Campaigns/[CAMPAIGN_NAME]/Launch_Bundle/.</div></div>
       });
     }
 
-    // ───────── Cowork library filters ─────────
+    // === COWORK-LIB-JS-START ===
     function setupCoworkFilters() {
       const chips = document.querySelectorAll('.cw-chip');
       if (!chips.length) return;
@@ -2070,6 +1516,7 @@ Save to /Marketing/Campaigns/[CAMPAIGN_NAME]/Launch_Bundle/.</div></div>
       });
     }
     document.addEventListener('DOMContentLoaded', setupCoworkFilters);
+    // === COWORK-LIB-JS-END ===
 
   </script>
 </body>
