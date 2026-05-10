@@ -10,7 +10,7 @@ A 2-hour, password-gated, single-page Microsoft 365 Copilot immersion experience
 
 ## What it covers
 
-The participant assumes the role of **Priya Subramaniam, Group CFO of KIBB**, preparing for a Board Risk Committee that has been moved forward to **Thursday 27 March 2026**, against a BNM follow-up letter on outsourcing oversight (response deadline 31 March 2026), and a strategic plan refresh due to the Group MD.
+The participant assumes the role of **Priya, Group CFO of KIBB**, preparing for a Board Risk Committee that has been moved forward to **Thursday 27 March 2026**, against a BNM follow-up letter on outsourcing oversight (response deadline 31 March 2026), and a strategic plan refresh due to the Group MD.
 
 Across **four exercises and ten tasks**, attendees work end-to-end through the highest-value finance, risk, and operations decisions a Malaysian investment bank C-suite makes in any given week.
 
