@@ -1,0 +1,6 @@
+_build/
+reference_index.html
+SESSION_INFO.txt
+*.py
+.DS_Store
+Thumbs.db

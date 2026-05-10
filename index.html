@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kenanga Investment Bank Berhad &middot; C-Suite Copilot Immersion</title>
+<style>
+:root{
+  --navy:#1E3A8A;--blue:#2563EB;--lblue:#3B82F6;--sky:#EFF6FF;
+  --green:#059669;--amber:#D97706;--red:#DC2626;
+  --lgrey:#F8FAFC;--mgrey:#E2E8F0;--dgrey:#64748B;--text:#1E293B;
+  --sidebar:260px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#F1F5F9;color:var(--text)}
+
+/* password screen */
+#lock{position:fixed;inset:0;background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);
+  display:flex;align-items:center;justify-content:center;z-index:9999}
+#lock-box{background:#fff;border-radius:16px;padding:40px;width:340px;text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.4)}
+#lock-box img{width:72px;margin-bottom:16px}
+#lock-box h2{color:var(--navy);font-size:1.3rem;margin-bottom:6px}
+#lock-box p{color:var(--dgrey);font-size:.9rem;margin-bottom:20px}
+#pw-wrap{position:relative;width:100%}
+#pw{width:100%;padding:10px 40px 10px 14px;border:2px solid var(--mgrey);border-radius:8px;
+  font-size:1rem;outline:none;transition:border .2s;box-sizing:border-box}
+#pw:focus{border-color:var(--blue)}
+#pw-toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;padding:0;margin:0;width:auto;
+  font-size:1.1rem;color:var(--dgrey);line-height:1}
+#pw-toggle:hover{color:var(--blue)}
+#lock-box>button{margin-top:14px;width:100%;padding:11px;background:var(--blue);
+  color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer;transition:background .2s}
+#lock-box button:hover{background:var(--navy)}
+#pw-err{color:var(--red);font-size:.85rem;margin-top:10px;min-height:18px}
+
+/* layout */
+#app{display:none;height:100vh;overflow:hidden}
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar);height:100vh;
+  background:var(--navy);color:#fff;overflow-y:auto;
+  display:flex;flex-direction:column}
+#sidebar-logo{padding:20px 18px 12px;border-bottom:1px solid rgba(255,255,255,.12)}
+#sidebar-logo .co{font-size:1.05rem;font-weight:700;color:#fff;line-height:1.3}
+#sidebar-logo .sub{font-size:.75rem;color:#93C5FD;margin-top:2px}
+nav a{display:block;padding:9px 18px;color:#CBD5E1;text-decoration:none;
+  font-size:.85rem;transition:all .15s;border-left:3px solid transparent}
+nav a:hover{background:rgba(255,255,255,.08);color:#fff;border-left-color:#93C5FD}
+nav a.active{background:rgba(59,130,246,.25);color:#fff;border-left-color:var(--lblue)}
+nav .nav-section{padding:10px 18px 4px;font-size:.72rem;font-weight:700;
+  color:#64748B;text-transform:uppercase;letter-spacing:.06em}
+#main{margin-left:var(--sidebar);height:100vh;overflow-y:auto;padding:32px 36px}
+
+/* cards */
+.page{display:none}.page.active{display:block}
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;
+  box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.3rem;color:var(--navy);margin-bottom:12px;
+  border-bottom:2px solid var(--sky);padding-bottom:8px}
+.card h3{font-size:1.05rem;color:var(--blue);margin:14px 0 6px}
+h1.page-title{font-size:1.7rem;color:var(--navy);margin-bottom:6px}
+.subtitle{color:var(--dgrey);font-size:.95rem;margin-bottom:24px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.75rem;font-weight:600;
+  background:var(--sky);color:var(--blue)}
+.badge.green{background:#D1FAE5;color:var(--green)}
+.badge.amber{background:#FEF3C7;color:var(--amber)}
+.badge.red{background:#FEE2E2;color:var(--red)}
+
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.78rem;font-weight:600}
+.pill-hands{background:#D1FAE5;color:var(--green)}
+.pill-brief{background:var(--sky);color:var(--blue)}
+.pill-break{background:#F3F4F6;color:#6B7280}
+
+/* exercise grid */
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:16px}
+.ex-card{background:#fff;border:2px solid var(--mgrey);border-radius:12px;padding:18px;
+  cursor:pointer;transition:all .2s;text-decoration:none;color:var(--text)}
+.ex-card:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(37,99,235,.15);transform:translateY(-2px)}
+.ex-card .icon{font-size:2rem;margin-bottom:10px}
+.ex-card h3{font-size:1rem;color:var(--navy);margin-bottom:4px}
+.ex-card p{font-size:.83rem;color:var(--dgrey)}
+
+/* prompts */
+.prompt-box{position:relative;background:#F0F9FF;border:1px solid #BAE6FD;
+  border-left:4px solid var(--blue);border-radius:8px;padding:12px 14px 38px 14px;
+  margin:10px 0;font-size:.88rem;line-height:1.6;white-space:pre-wrap}
+.copy-btn{position:absolute;bottom:8px;right:8px;padding:4px 10px;background:var(--blue);
+  color:#fff;border:none;border-radius:6px;font-size:.75rem;cursor:pointer}
+.copy-btn:hover{background:var(--navy)}
+.step{display:flex;gap:12px;margin:10px 0;align-items:flex-start}
+.step-num{background:var(--blue);color:#fff;width:26px;height:26px;border-radius:50%;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700}
+.step-body{flex:1}
+
+/* file table */
+table.files{width:100%;border-collapse:collapse;font-size:.9rem}
+table.files th{background:var(--navy);color:#fff;padding:9px 14px;text-align:left}
+table.files td{padding:9px 14px;border-bottom:1px solid var(--mgrey)}
+table.files tr:hover{background:var(--sky)}
+table.files a{color:var(--blue);text-decoration:none;font-weight:600}
+table.files a:hover{text-decoration:underline}
+
+/* tools */
+.tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px}
+.tool-card{background:var(--sky);border-radius:10px;padding:16px;border:1px solid #BFDBFE}
+.uc-card{background:#F8FAFC;border-left:4px solid var(--blue);border-radius:8px;padding:16px 18px;margin:14px 0}
+.uc-card h4{margin:0 0 8px;color:var(--navy);font-size:1.02rem}
+.uc-card p{margin:6px 0;font-size:.92rem;line-height:1.6;color:var(--text)}
+.tool-card .t-icon{font-size:1.8rem;margin-bottom:8px}
+.tool-card h4{color:var(--navy);font-size:.95rem;margin-bottom:4px}
+.tool-card p{font-size:.82rem;color:var(--dgrey)}
+
+/* agent */
+.agent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:12px}
+.agent-card{background:#fff;border:2px solid var(--mgrey);border-radius:12px;padding:18px;cursor:pointer;transition:all .2s}
+.agent-card:hover,.agent-card.selected{border-color:var(--blue);box-shadow:0 4px 16px rgba(37,99,235,.12)}
+.agent-card.selected{background:var(--sky)}
+.agent-detail{display:none;background:var(--sky);border:1px solid #BFDBFE;border-radius:10px;padding:20px;margin-top:16px}
+
+/* gcse */
+.gcse-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin:12px 0}
+.gcse-card{border-radius:10px;padding:16px;text-align:center}
+.gcse-card h4{font-size:1.05rem;font-weight:700;margin-bottom:6px}
+.gcse-card p{font-size:.82rem}
+.g-g{background:#D1FAE5;color:#065F46}.g-c{background:var(--sky);color:#1E40AF}
+.g-s{background:#FEF3C7;color:#92400E}.g-e{background:#FEE2E2;color:#991B1B}
+.gcse-tag{display:inline-block;font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:4px;margin:2px 2px 0}
+.gcse-tag.tg{background:#D1FAE5;color:#065F46}.gcse-tag.tc{background:#DBEAFE;color:#1E40AF}
+.gcse-tag.ts{background:#FEF3C7;color:#92400E}.gcse-tag.te{background:#FEE2E2;color:#991B1B}
+.gcse-tags{margin-top:8px}
+.gcse-g{background:#D1FAE5;color:#065F46;border-radius:3px;padding:0 3px}
+.gcse-c{background:#DBEAFE;color:#1E40AF;border-radius:3px;padding:0 3px}
+.gcse-s{background:#FEF3C7;color:#92400E;border-radius:3px;padding:0 3px}
+.gcse-e{background:#FEE2E2;color:#991B1B;border-radius:3px;padding:0 3px}
+.prompt-lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:12px}
+.pl-item{background:#fff;border:1px solid var(--mgrey);border-radius:8px;padding:14px}
+.pl-item h5{font-size:.85rem;color:var(--blue);margin-bottom:6px}
+.pl-item p{font-size:.82rem;color:var(--dgrey);font-style:italic}
+
+/* accordion */
+details{background:var(--lgrey);border:1px solid var(--mgrey);border-radius:8px;margin:8px 0}
+details summary{padding:10px 14px;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--navy)}
+details[open]{background:#fff}
+details .inner{padding:10px 16px 14px}
+
+/* risk */
+table.risk{width:100%;border-collapse:collapse;font-size:.88rem}
+table.risk th{background:var(--navy);color:#fff;padding:7px 11px;text-align:left}
+table.risk td{padding:7px 11px;border-bottom:1px solid var(--mgrey)}
+.risk-H{color:var(--red);font-weight:700}.risk-M{color:var(--amber);font-weight:700}
+
+/* mobile */
+#hamburger{display:none;position:fixed;top:12px;left:12px;z-index:10000;
+  background:var(--navy);color:#fff;border:none;border-radius:8px;
+  padding:8px 12px;font-size:1.2rem;cursor:pointer;line-height:1}
+#sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9998}
+#sidebar-overlay.show{display:block}
+
+@media(max-width:768px){
+  #hamburger.unlocked{display:block}
+  #sidebar{transform:translateX(-100%);transition:transform .25s ease;z-index:9999}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding:60px 16px 24px}
+  #app{height:auto;overflow:visible}
+  #main{height:auto;overflow:visible}
+  body{overflow-y:auto}
+  h1.page-title{font-size:1.35rem}
+  .tool-grid{grid-template-columns:repeat(2,1fr)}
+  .ex-grid{grid-template-columns:1fr}
+  .agent-grid{grid-template-columns:1fr}
+  .gcse-grid{grid-template-columns:repeat(2,1fr)}
+  .prompt-lib{grid-template-columns:1fr}
+  #lock-box{width:90vw;max-width:340px;padding:28px 20px}
+  table.files,table.risk{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .card{padding:16px}
+  .prompt-box{font-size:.83rem;padding:10px 10px 38px}
+}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lock">
+  <div id="lock-box">
+    <div style="font-size:3rem">🏦</div>
+    <h2>Kenanga Investment Bank Berhad<br>C-Suite Copilot Immersion</h2>
+    <p>Group Finance, Risk &amp; Outsourcing Workshop<br>Enter the session password to continue.</p>
+    <div id="pw-wrap">
+      <input id="pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')unlock()">
+      <button id="pw-toggle" type="button" onclick="togglePw()" title="Show/hide password">👁️</button>
+    </div>
+    <button onclick="unlock()">Enter ›</button>
+    <div id="pw-err"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<button id="hamburger" onclick="toggleSidebar()">☰</button>
+<div id="sidebar-overlay" onclick="toggleSidebar()"></div>
+<div id="app">
+  <div id="sidebar">
+    <div id="sidebar-logo">
+      <div class="co">🏦 Kenanga IB</div>
+      <div class="sub">C-Suite Copilot<br>Immersion</div>
+    </div>
+    <nav>
+      <div class="nav-section">Workshop</div>
+      <a href="javascript:void(0)" onclick="show('overview')" id="nav-overview" class="active">🏠 Overview</a>
+      <a href="javascript:void(0)" onclick="show('story')"    id="nav-story">🎭 Your Story</a>
+      <a href="javascript:void(0)" onclick="show('getstarted')" id="nav-getstarted">🚀 Get Started</a>
+      <div class="nav-section">Exercises</div>
+      <a href="javascript:void(0)" onclick="show('ex1')"  id="nav-ex1">🔍 Ex 1 · Researcher</a>
+      <a href="javascript:void(0)" onclick="show('ex2')"  id="nav-ex2">📊 Ex 2 · Financial Analysis</a>
+      <a href="javascript:void(0)" onclick="show('ex3')"  id="nav-ex3">📄 Ex 3 · Contract &amp; Reports</a>
+      <a href="javascript:void(0)" onclick="show('ex4')"  id="nav-ex4">🤖 Ex 4 · Agent Builder</a>
+      <div class="nav-section">Resources</div>
+      <a href="javascript:void(0)" onclick="show('usecases')" id="nav-usecases">📋 Use Cases</a>
+      <a href="javascript:void(0)" onclick="show('tips')"  id="nav-tips">💡 Prompting Tips</a>
+    </nav>
+  </div>
+
+  <div id="main">
+
+    <!-- OVERVIEW -->
+    <div id="page-overview" class="page active">
+      <h1 class="page-title">C-Suite Copilot Immersion</h1>
+      <p class="subtitle">Kenanga Investment Bank Berhad &nbsp;·&nbsp; Group Office &nbsp;·&nbsp; 2-Hour Executive Workshop</p>
+      <div class="card">
+        <h2>Welcome</h2>
+        <p>This immersion experience puts you in the shoes of <strong>Priya Subramaniam</strong>, Group Chief Financial Officer of Kenanga Investment Bank Berhad. The Board Risk Committee has been brought forward to Thursday 27 March 2026, a BNM follow-up letter on outsourcing oversight is sitting in your inbox with a 31 March response deadline, and the Group's strategic plan refresh is due to the Group MD next week. Over two hours you will work through four exercises that mirror the highest-value finance, risk, and operations decisions a Malaysian investment bank C-suite makes in any given week: peer benchmarking against Maybank IB, CIMB IB, Affin Hwang, RHB IB and Phillip Capital; segment-level variance analysis across the eight KIBB business segments; vendor outsourcing risk review against the BNM Outsourcing Policy; Board Risk Committee deck and Cowork delegation; and finally building your own Group Outsourcing &amp; Finance Policy Advisor agent.</p>
+        <br>
+        <p>You will use <strong>Copilot in Excel, Word, and PowerPoint</strong>, the <strong>Researcher</strong> and <strong>Analyst</strong> agents in Microsoft 365 Copilot Chat, <strong>Cowork</strong> to delegate multiple board-pack tasks in parallel, and <strong>Agent Builder</strong> to publish a policy advisor your Group Finance, Risk and Procurement teams can use every day.</p>
+      </div>
+      <div class="card">
+        <h2>Learning Outcomes</h2>
+        <ul style="padding-left:20px;line-height:2.2">
+          <li>Use the <strong>Researcher Agent</strong> to benchmark a Malaysian IB peer set and stress-test the Group's strategic risks with a multi-model view</li>
+          <li>Use <strong>Copilot in Excel</strong> to produce an 8-segment RAG variance table, Group CFO board commentary, and a Board Risk Committee dashboard from a single workbook</li>
+          <li>Use the <strong>Analyst Agent</strong> to run pivot analysis, flag persistent segment underperformance, and project year-end exposure against PBT guidance</li>
+          <li>Use <strong>Copilot in Word</strong> to review a managed-services vendor contract against the BNM Outsourcing Policy and surface every breach with RM exposure</li>
+          <li>Use <strong>Copilot in PowerPoint</strong> to generate a Board Risk Committee briefing deck from your findings</li>
+          <li>Use <strong>Cowork</strong> to delegate five committee-prep tasks in parallel: two Word documents, an email, a calendar invite, and a Teams message</li>
+          <li>Use <strong>Agent Builder</strong> to build a Group Outsourcing &amp; Finance Policy Advisor agent grounded in the Group's policy manual</li>
+          <li>Apply the <strong>GCSE prompting framework</strong> (Goal · Context · Source · Expectation) to every task</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Workshop Format</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:8px">
+          <div style="background:#DBEAFE;border-radius:8px;padding:14px;text-align:center">
+            <div style="font-size:1.5rem">⏱️</div><strong>2 Hours</strong>
+          </div>
+          <div style="background:#D1FAE5;border-radius:8px;padding:14px;text-align:center">
+            <div style="font-size:1.5rem">🎯</div><strong>4 Exercises</strong>
+          </div>
+          <div style="background:#FEF3C7;border-radius:8px;padding:14px;text-align:center">
+            <div style="font-size:1.5rem">📄</div><strong>4 Files</strong><br><small>Excel · Word · Word · Word</small>
+          </div>
+          <div style="background:#F3E8FF;border-radius:8px;padding:14px;text-align:center">
+            <div style="height:2rem;display:flex;align-items:center;justify-content:center;margin-bottom:4px"><img src="assets/copilot-logo.png" alt="M365 Copilot" style="height:2rem;width:auto"></div><strong>M365 Copilot</strong><br><small>No extra tools needed</small>
+          </div>
+          <div style="background:#FEE2E2;border-radius:8px;padding:14px;text-align:center">
+            <div style="font-size:1.5rem">🤖</div><strong>Agent Builder</strong><br><small>Build your own agent</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- YOUR STORY -->
+    <div id="page-story" class="page">
+      <h1 class="page-title">Your Story</h1>
+      <p class="subtitle">You are Priya Subramaniam, Group CFO of Kenanga Investment Bank Berhad</p>
+
+      <div style="display:grid;grid-template-columns:220px 1fr;gap:0;border:1px solid var(--mgrey);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);margin-bottom:24px">
+        <!-- LEFT PANEL -->
+        <div style="background:linear-gradient(180deg,#0f2545 0%,#1e3a5f 100%);padding:24px 18px;display:flex;flex-direction:column;gap:11px">
+          <p style="margin:0;font-size:8px;letter-spacing:2px;font-weight:700;color:#93C5FD;text-transform:uppercase">M365 Copilot &middot; KIBB C-Suite</p>
+          <h3 style="margin:0;font-size:19px;font-weight:800;color:#fff;line-height:1.2">From Data<br>to Decision</h3>
+          <div style="margin-top:4px">
+            <p style="margin:0 0 3px;font-size:7.5px;letter-spacing:1.5px;font-weight:700;color:#93C5FD;text-transform:uppercase">Persona</p>
+            <p style="margin:0;font-size:12.5px;font-weight:700;color:#fff">Priya Subramaniam</p>
+            <p style="margin:2px 0 0;font-size:10.5px;color:#94a3b8">Group Chief Financial Officer<br>Kenanga Investment Bank Berhad</p>
+          </div>
+          <div style="margin-top:4px">
+            <p style="margin:0 0 3px;font-size:7.5px;letter-spacing:1.5px;font-weight:700;color:#93C5FD;text-transform:uppercase">The Mission</p>
+            <p style="margin:0;font-size:10.5px;color:#cbd5e1;line-height:1.6">Board Risk Committee was moved to Thursday. Three segments are above the 10% adverse-variance threshold, a critical vendor contract breaches the BNM Outsourcing Policy, and your Group Procurement team has no policy tool. Clear it all in one morning.</p>
+          </div>
+          <div style="margin-top:4px;padding:10px;background:rgba(255,255,255,.06);border-radius:8px;border:1px solid rgba(255,255,255,.1)">
+            <p style="margin:0 0 3px;font-size:7.5px;letter-spacing:1.5px;font-weight:700;color:#93C5FD;text-transform:uppercase">The Punchline</p>
+            <p style="margin:0;font-size:11.5px;font-weight:700;font-style:italic;color:#fff;line-height:1.4">One morning. Ten tasks.<br>From research to agent.</p>
+          </div>
+        </div>
+        <!-- RIGHT PANEL -->
+        <div style="background:#F8FAFC;padding:20px 18px 14px">
+          <h3 style="margin:0 0 14px;font-size:16px;font-weight:700;color:var(--text)">Ten tasks across one morning</h3>
+
+          <!-- EX 1 -->
+          <div style="margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <span style="background:#0f2545;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.5px">EXERCISE 1 &nbsp;&middot;&nbsp; 15 min</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text)">Researcher + Word</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#0369a1;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">01</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Researcher &middot; Critique</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Benchmark the peer set</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Benchmark KIBB's governance posture against Maybank IB, CIMB IB, Affin Hwang, RHB IB and Phillip Capital. Critique enforces citation grounding on every claim.</p>
+                </div>
+              </div>
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#7c3aed;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">02</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Model Council</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Stress-test the strategy</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Multiple frontier models independently assess the strategic risks for a Malaysian IB. The judge's cover letter shows where they agree, diverge, and what each adds.</p>
+                </div>
+              </div>
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#1e3a5f;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">03</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Word Copilot</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Write the brief</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Export the Researcher report to Word. Copilot drafts a Group MD briefing note with peer benchmarking, strategic risk register, and next steps.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EX 2 -->
+          <div style="margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <span style="background:#0f2545;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.5px">EXERCISE 2 &nbsp;&middot;&nbsp; 30 min</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text)">Financial Analysis</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#15803d;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">04</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Excel Copilot</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Variance &amp; commentary</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Full RAG variance table across all 8 segments + Group CFO board commentary in a single prompt. Segments breaching the 10% threshold are flagged for corrective action.</p>
+                </div>
+              </div>
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#0f766e;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">05</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Excel Copilot</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Build the dashboard</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Copilot builds a Board Risk Committee dashboard with KPI row, RAG bar chart, and monthly trend line, formatted for A4 landscape board pack.</p>
+                </div>
+              </div>
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#0f4c75;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">06</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Analyst Agent</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Interrogate the data</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Drop in the segment P&amp;L. Pivot tables, persistent-underperformance flags, and year-end PBT exposure projection. No setup needed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EX 3 -->
+          <div style="margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <span style="background:#0f2545;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.5px">EXERCISE 3 &nbsp;&middot;&nbsp; 30 min</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text)">Contract &amp; Reporting</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#1e3a5f;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">07</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Word Copilot</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Find the breaches</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Copilot reads the QuantumStream MSA and surfaces every HIGH and MEDIUM clause that breaches the BNM Outsourcing Policy with RM exposure quantified.</p>
+                </div>
+              </div>
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#7e22ce;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">08</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">PowerPoint Copilot</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Build the deck</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Copilot generates a 6-slide Board Risk Committee deck from the segment P&amp;L and contract findings. No slide design needed.</p>
+                </div>
+              </div>
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#9d174d;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">09</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Cowork</span>
+                </div>
+                <div style="padding:8px;background:#fff">
+                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Delegate five tasks</p>
+                  <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Five parallel tasks: two Word documents (BRC summary, BNM response memo), pre-committee email, calendar invite, and Teams message.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EX 4 -->
+          <div style="margin-bottom:14px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <span style="background:#0f2545;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.5px">EXERCISE 4 &nbsp;&middot;&nbsp; 20 min</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text)">Build Your Agent</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr;gap:8px">
+              <div style="border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                <div style="background:#0f2545;padding:4px 8px;display:flex;align-items:center;gap:5px">
+                  <span style="font-size:9.5px;font-weight:800;color:rgba(255,255,255,.55)">10</span>
+                  <span style="font-size:7.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px">Agent Builder</span>
+                </div>
+                <div style="padding:8px;background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                  <div>
+                    <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:var(--text)">Build the future</p>
+                    <p style="margin:0;font-size:9.5px;color:var(--dgrey);line-height:1.5">Build a custom agent connected to your team's knowledge. Choose: Group Outsourcing &amp; Finance Policy Advisor, BNM Compliance Q&amp;A Agent, or Vendor Contract Intelligence Assistant.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VALUE BAR -->
+          <div style="background:#fef9c3;border:1px solid #fbbf24;border-left:4px solid #f59e0b;border-radius:8px;padding:9px 14px;font-size:11.5px;color:#78350f">
+            <b>THE VALUE:</b> One Group CFO. One morning. Benchmark peers, analyse 8 segments, review a vendor contract, build a board deck, and deploy a custom Copilot agent, all without leaving Microsoft 365.
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOLS GRID -->
+      <div class="card">
+        <h2>M365 Copilot Tools You Will Use</h2>
+        <div class="tool-grid">
+          <div class="tool-card"><div class="t-icon">💬</div><h4>Copilot Chat</h4><p>Research, synthesis, and cross-file reasoning. Your AI research assistant.</p></div>
+          <div class="tool-card"><div class="t-icon">📊</div><h4>Copilot in Excel</h4><p>Analyse spreadsheet data, explain formulas, generate chart commentary.</p></div>
+          <div class="tool-card"><div class="t-icon">📝</div><h4>Copilot in Word</h4><p>Summarise, extract, rewrite, and draft documents. Great for contracts.</p></div>
+          <div class="tool-card"><div class="t-icon">📧</div><h4>Copilot in Outlook</h4><p>Draft emails, summarise threads, suggest replies.</p></div>
+          <div class="tool-card"><div class="t-icon">📈</div><h4>Copilot in PowerPoint</h4><p>Transform documents and data into polished presentations instantly.</p></div>
+          <div class="tool-card"><div class="t-icon">🤖</div><h4>Agent Builder</h4><p>Build custom agents grounded in your organisation's own documents and data.</p></div>
+          <div class="tool-card"><div class="t-icon">🔍</div><h4>Researcher Agent</h4><p>Deep research with Critique and Model Council modes for cited, multi-model outputs.</p></div>
+          <div class="tool-card"><div class="t-icon">📉</div><h4>Analyst Agent</h4><p>AI-driven data analysis: pivot tables, charts, and calculations with no setup.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GET STARTED -->
+    <div id="page-getstarted" class="page">
+      <h1 class="page-title">Get Started</h1>
+      <p class="subtitle">Download your files, verify your licence, and you are ready</p>
+      <div class="card">
+        <h2>Workshop Files</h2>
+        <p style="margin-bottom:12px">Download all 4 files and save them to your OneDrive <strong>Documents</strong> folder so Copilot can access them during the exercises.</p>
+        <table class="files">
+          <tr><th>#</th><th>File Name</th><th>Type</th><th>Used In</th><th>Description</th></tr>
+          <tr>
+            <td>1</td>
+            <td><a href="files/01_KIBB_SegmentPnL.xlsx" download>01_KIBB_SegmentPnL.xlsx</a></td>
+            <td>📊 Excel</td><td>Ex 2</td><td>12-month segment P&amp;L for the 8 KIBB business segments, board variance summary, 3 sheets</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a href="files/02_KIBB_VendorContract.docx" download>02_KIBB_VendorContract.docx</a></td>
+            <td>📝 Word</td><td>Ex 3</td><td>QuantumStream Technologies managed-services agreement with multiple BNM Outsourcing Policy breaches embedded</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><a href="files/03_KIBB_BoardRiskCommittee_Transcript.docx" download>03_KIBB_BoardRiskCommittee_Transcript.docx</a></td>
+            <td>📝 Word</td><td>Ex 3</td><td>Board Risk Committee meeting transcript with 10 action items and BNM follow-up resolution</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><a href="files/04_KIBB_GroupOutsourcingFinancePolicy.docx" download>04_KIBB_GroupOutsourcingFinancePolicy.docx</a></td>
+            <td>📝 Word</td><td>Ex 1, 3, 4</td><td>16-section Group Outsourcing &amp; Finance policy aligned to BNM/RH/PD 028-99, FSA 2013, CMSA 2007 and PDPA 2010</td>
+          </tr>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Before You Start</h2>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Save files to OneDrive</strong><br>
+          Open OneDrive, navigate to <strong>My Files → Documents</strong>, create a folder called <em>KIBB Copilot Immersion</em> and upload all 4 files. Wait for the upload to complete before starting.
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Verify your Copilot licence</strong><br>
+          Open <a href="https://m365.cloud.microsoft" target="_blank">m365.cloud.microsoft</a> and confirm the Copilot icon appears. If not, contact your IT admin.
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Open Copilot Chat</strong><br>
+          Navigate to <a href="https://m365.cloud.microsoft/chat" target="_blank">m365.cloud.microsoft/chat</a>. Type <strong>/</strong> and look for the files by name to confirm Copilot can see them.
+        </div></div>
+      </div>
+      <div class="card">
+        <h2>Tips Before You Start</h2>
+        <ul style="padding-left:20px;line-height:2">
+          <li>Use <strong>specific, context-rich prompts</strong>: vague prompts return vague results</li>
+          <li>Always <strong>reference your file by name</strong> when prompting about it</li>
+          <li>If results are unexpected, <strong>rephrase and try again</strong>. Iteration is normal</li>
+          <li>Use the <strong>📋 Copy</strong> buttons to copy prompts exactly as written</li>
+          <li>Compare outputs across the room and discuss the differences</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- EXERCISE 1 -->
+    <div id="page-ex1" class="page">
+      <h1 class="page-title">Exercise 1 &middot; Researcher</h1>
+      <p class="subtitle">Tools: Researcher &middot; Model Council &middot; Copilot in Word &nbsp;&middot;&nbsp; 15 minutes</p>
+      <div class="card">
+        <h2>Objective</h2>
+        <p>Use Researcher's <strong>Critique</strong> mode to benchmark KIBB's group governance and segment posture against the Malaysian investment banking peer set, then switch to <strong>Model Council</strong> for a multi-model assessment of the strategic risks facing a domestic IB over the next 24 months, and finally use <strong>Copilot in Word</strong> to turn the research into a Group MD briefing note.</p>
+      </div>
+      <div class="card">
+        <h2>Step 1 &middot; Open the Researcher Agent</h2>
+        <div class="step"><div class="step-num">1</div><div class="step-body">Go to <a href="https://m365.cloud.microsoft/chat" target="_blank">Copilot Chat</a> and click <strong>Researcher</strong> in the agents panel on the right.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          You will use two modes across Tasks 1 and 2:
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
+            <div style="background:#EFF6FF;border:2px solid #BFDBFE;border-radius:10px;padding:14px">
+              <strong style="color:var(--navy)">🔍 Critique (Auto)</strong>
+              <p style="font-size:.82rem;margin-top:6px;color:var(--dgrey)">The default mode. One model researches and drafts; a second independently reviews source reliability and evidence grounding before the final report is delivered. Every key claim is anchored to a citable source.</p>
+            </div>
+            <div style="background:#F0FDF4;border:2px solid #BBF7D0;border-radius:10px;padding:14px">
+              <strong style="color:#065F46">⚖️ Model Council</strong>
+              <p style="font-size:.82rem;margin-top:6px;color:var(--dgrey)">Multiple models each run your prompt independently and produce full standalone reports. A judge model then writes a cover letter highlighting where models agree, diverge, and what unique insight each brings.</p>
+            </div>
+          </div>
+        </div></div>
+      </div>
+      <div class="card">
+        <h2>Task 1 &middot; Critique: Malaysian IB Peer Benchmarking</h2>
+        <p>Keep the model selector on <strong>Auto</strong> (this is Critique). Use the prompt below:</p>
+        <div class="prompt-box" id="p1-1"><button class="copy-btn" onclick="copyPrompt('p1-1')">📋 Copy</button>I am the Group Chief Financial Officer of Kenanga Investment Bank Berhad, a Bursa-listed Malaysian investment bank with approximately RM 1 billion in annual revenue across eight business segments, including Equities and Stockbroking, Investment Banking, Asset and Wealth Management, Listed Derivatives, Islamic Banking, Money Lending and Financing, Treasury, and Group Support. The Group MD has asked me to benchmark our group posture before next week's strategic plan refresh. I need you to research how comparable Malaysian investment banks, specifically Maybank Investment Bank, CIMB Investment Bank, Affin Hwang Investment Bank, RHB Investment Bank, and Phillip Capital Malaysia, are positioned across the following dimensions: stockbroking and equities market share including disclosed retail versus institutional mix, investment banking deal origination footprint covering ECM, DCM, and M&amp;A, assets under management in the asset and wealth management segment with retail versus institutional split, listed derivatives and futures broking presence on Bursa Malaysia Derivatives, Islamic banking and capital markets product breadth, and disclosed cost-to-income ratio and return on equity for the most recent reported financial year. Present your findings as a comparison table with each peer institution as a column and each dimension as a row. In a separate paragraph below the table, highlight the two or three areas where KIBB's positioning is likely to differ most significantly from peers, and flag any segments where peer disclosure suggests we may be sub-scale and where consolidation, partnership, or strategic exit should be on the agenda for the Group Board.</div>
+        <p style="margin-top:10px;font-size:.85rem;color:var(--dgrey)">Check the citations in the report. Critique enforces strict evidence grounding, requiring every key claim to be anchored to a reliable, citable source before the final output is produced.</p>
+      </div>
+      <div class="card">
+        <h2>Task 2 &middot; Model Council: Strategic Risk Assessment</h2>
+        <p>Click the model picker in Researcher and switch to <strong>Model Council</strong>. Each model will run your prompt independently and produce its own full report. Use the prompt below:</p>
+        <div class="prompt-box" id="p1-2"><button class="copy-btn" onclick="copyPrompt('p1-2')">📋 Copy</button>I am the Group Chief Financial Officer of Kenanga Investment Bank Berhad. I need a strategic risk assessment of the top financial, regulatory, and operational risks facing Malaysian investment banks over the next 24 months. Consider the following dimensions: BNM regulatory pressure on outsourcing and material technology risk, including the BNM Outsourcing Policy BNM/RH/PD 028-99, BNM Risk Management in Technology RMiT, and emerging operational resilience expectations; Bursa Malaysia listing requirement evolution on sustainability disclosure and the Group's readiness for the National Sustainability Reporting Framework aligned to ISSB IFRS S1 and S2; revenue concentration risk in stockbroking as retail trading volumes normalise post-pandemic and as zero-commission digital brokers continue to compress margins on cash equities; investment banking deal pipeline risk in a softer ECM and M&amp;A environment with peers chasing the same transactions; cyber and third-party concentration risk where critical functions including trading platform hosting, market data, and post-trade settlement are dependent on a small number of providers; and talent and retention risk for licensed dealer's representatives, senior bankers, and quantitative trading staff in a market where regional players and global digital asset platforms are aggressively recruiting. For each risk, assess the likelihood and potential financial impact in RM, describe how leading regional and Malaysian peers are mitigating it, and suggest one concrete governance action the KIBB Group Board should prioritise in the next six months. Present as a structured risk register with a one-paragraph executive summary at the top.</div>
+        <p style="margin-top:10px;font-size:.85rem;color:var(--dgrey)"><strong>Read the cover letter</strong>, written by a dedicated judge model that compares both reports and highlights where they agree, where they diverge, and the unique insight each model brings. That is where the real value of Model Council shows.</p>
+      </div>
+      <div class="card">
+        <h2>Task 3 &middot; Word: Group MD Briefing Note</h2>
+        <p>First, get your Task 1 Critique research into Word:</p>
+        <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-left:4px solid var(--navy);border-radius:8px;padding:12px 16px;margin:10px 0;font-size:.9rem">
+          <strong>Critique output:</strong> In your Researcher report, click the <strong>Export</strong> button → <strong>Convert to Word</strong>. The document saves automatically to your OneDrive. Open it from OneDrive.
+        </div>
+        <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-left:4px solid #22C55E;border-radius:8px;padding:12px 16px;margin:10px 0;font-size:.9rem">
+          <strong>Model Council output:</strong> Choose the report you prefer. Select all → Copy. Open a blank Word document, paste, and save to your OneDrive.
+        </div>
+        <p style="margin-top:12px">Open the Word document. In the <strong>Home ribbon → Copilot</strong> pane, use the prompt below to draft the Group MD briefing note:</p>
+        <div class="prompt-box" id="p1-3"><button class="copy-btn" onclick="copyPrompt('p1-3')">📋 Copy</button>Based on the research content in this document, draft a one-page Group MD briefing note for the Kenanga Investment Bank Berhad strategic plan refresh discussion. Structure it as follows: open with a one-paragraph executive summary stating the overall positioning of KIBB relative to the Malaysian investment banking peer set and the headline strategic risk we face in the next 12 to 24 months. Follow with a peer benchmarking summary table showing where KIBB stands on each of the key positioning dimensions compared to the peer institutions, using a simple Above Peer, In Line, or Below Peer rating for each dimension. Then write a section covering the top three strategic risks that require Board-level decisions this financial year, each with a plain-English explanation of the risk and a specific recommended action with a proposed owner at Group ExCo level and a clear timeline. Close with a next steps paragraph recommending the two or three structural decisions the Group MD should bring to the Group Board before the next strategic plan tabling. Write all narrative in formal business English suitable for a Board-level audience. Use square bracket placeholders for any data point not confirmed in the research. Target length is 350 to 400 words.</div>
+      </div>
+    </div>
+
+    <!-- EXERCISE 2 -->
+    <div id="page-ex2" class="page">
+      <h1 class="page-title">Exercise 2 &middot; Financial Analysis</h1>
+      <p class="subtitle">Tools: Copilot in Excel &middot; Analyst Agent &nbsp;&middot;&nbsp; 30 minutes</p>
+      <div class="card">
+        <h2>Objective</h2>
+        <p>Open the Group segment P&amp;L workbook in Excel. Use Copilot in Excel to surface segments that have breached the 10% adverse-variance threshold, draft Group CFO board commentary, and build an executive Board Risk Committee dashboard, then hand the same data to the Analyst Agent for deeper AI-driven analysis ahead of Thursday's committee.</p>
+      </div>
+      <div class="card">
+        <h2>Task 1 &middot; Variance Analysis &amp; Group CFO Commentary</h2>
+        <p>Open <strong>01_KIBB_SegmentPnL.xlsx</strong> in Excel. Navigate to the <em>Monthly_PnL</em> sheet and open Copilot from the <strong>Home ribbon → Copilot</strong>.</p>
+        <div class="prompt-box" id="p2-1"><button class="copy-btn" onclick="copyPrompt('p2-1')">📋 Copy</button>I am the Group Chief Financial Officer of Kenanga Investment Bank Berhad preparing the Q1 Board Risk Committee pack, which the Group MD needs ahead of Thursday 27 March 2026. Using the Monthly_PnL sheet in this workbook, I need two outputs placed together in a new sheet called Q1 Board Summary. First, produce a Board Risk Committee variance summary table covering every business segment, showing actual revenue and operating cost year-to-date, budget year-to-date, the RM variance, and the variance as a percentage, with a RAG status column where Red means over 10% adverse, Amber means 5 to 10% adverse, and Green means within 5% of budget. Flag any segment where the variance has breached the 10% threshold that triggers a mandatory corrective action plan and a written explanation to the Group Board under our internal policy, and for those segments add a one-sentence explanation of the likely commercial driver based on the data visible in the sheet. Second, immediately below the table in the same Q1 Board Summary sheet, draft the Group CFO narrative commentary for the Board Risk Committee pack. This should open by stating the Group's overall Q1 PBT position in both RM and percentage terms relative to budget, discuss the two segments with the most significant adverse variances by name and explain what is driving each shortfall, briefly acknowledge the best-performing segment to give a balanced view, explicitly state which segments have triggered the corrective action threshold, and close with a clear statement of the management actions proposed and the timeline for resolution before the next Board cycle. Write the commentary in formal continuous prose, no bullet points, 200 to 220 words, suitable for a Board Risk Committee pack and consistent with Bursa-listed disclosure standards.</div>
+      </div>
+      <div class="card">
+        <h2>Task 2 &middot; Board Risk Committee Dashboard</h2>
+        <p>Stay in <strong>01_KIBB_SegmentPnL.xlsx</strong> with Copilot in Excel open. Ask Copilot to build an executive dashboard sheet with no pivot table or chart setup needed.</p>
+        <p style="font-size:.85rem;color:var(--dgrey);margin-top:6px">💡 <strong>Note:</strong> Copilot in Excel will create the new sheet, build the charts, and add the summary table. Print layout formatting (A4 landscape) may need a quick manual tidy. Use <strong>Page Layout → Fit to Page</strong> if needed.</p>
+        <div class="prompt-box" id="p2-2"><button class="copy-btn" onclick="copyPrompt('p2-2')">📋 Copy</button>I am preparing a Board Risk Committee pack for Kenanga Investment Bank Berhad and I need a visual executive dashboard built directly in this workbook so it can be printed and included as a single-page insert for the committee. Using the data in the Monthly_PnL sheet, create a new sheet called Dashboard and build the following elements on it. At the top of the page create a KPI summary row with three clearly labelled headline boxes showing total Group revenue year-to-date in RM, total Group budget year-to-date in RM, and the overall Group PBT variance expressed as both an RM figure and a percentage with a RAG indicator so the committee sees the Group position in seconds. Below the KPI row create a horizontal bar chart ranking every business segment by their year-to-date adverse variance from worst to best, with RAG colour coding applied directly to the bars: Red for over 10% adverse, Amber for 5 to 10%, Green for within budget, so the committee can immediately see which segments need attention without reading a table. Add a second chart showing the monthly trend of total Group revenue versus total budget for all 12 months as a dual-line chart, so the committee can see whether the gap is widening or narrowing over time and assess whether the variance is structural or seasonal. Finally add a compact summary table below the charts listing only the Red-flagged segments with columns for segment name, YTD variance in RM, variance percentage, and a status cell reading Corrective Action Required. Format the entire dashboard to fit and print cleanly on a single A4 landscape page so it can be inserted directly into the Board Risk Committee pack without resizing.</div>
+      </div>
+      <div class="card">
+        <h2>Task 3 &middot; Analyst Agent</h2>
+        <p>The <strong>Analyst Agent</strong> is a built-in agent in Copilot Chat that writes and runs its own code to analyse data, with no Excel skills or formula setup needed. Open <a href="https://m365.cloud.microsoft/chat" target="_blank">Copilot Chat</a>, select <strong>Analyst</strong> from the agents panel, and upload <strong>01_KIBB_SegmentPnL.xlsx</strong>.</p>
+        <div class="prompt-box" id="p2-3"><button class="copy-btn" onclick="copyPrompt('p2-3')">📋 Copy</button>I am the Group Chief Financial Officer of Kenanga Investment Bank Berhad and I am uploading the Q1 segment P&amp;L workbook to prepare for Thursday's Board Risk Committee. I need the Analyst Agent to run a full quantitative analysis on the Monthly_PnL sheet and produce six specific outputs. First, build a complete pivot table showing actual revenue and operating cost versus budget for every business segment across all 12 months with a variance column, a variance percentage column, and RAG conditional formatting applied automatically so Red cells indicate over 10% adverse variance, Amber indicates 5 to 10%, and Green indicates within budget. Second, generate a horizontal bar chart ranking every segment by total year-to-date adverse variance in PBT from worst to best, with RAG colour coding on the bars, so the committee can see the full picture at a glance. Third, produce a dual-line chart showing total Group revenue versus total budget for each month across the full year, so the committee can see whether the variance gap is widening, narrowing, or seasonal. Fourth, produce a stacked bar chart breaking down monthly revenue contribution by segment for the year so the Board can see which segments are driving Group revenue growth or decline over time. Fifth, analyse the monthly trend data for every segment and identify those that have underperformed against budget for three or more consecutive months, because a persistent multi-month pattern indicates a structural revenue or cost problem rather than a one-off timing issue, and present these in a separate flagged table with the segment name, number of consecutive months of underperformance, and total cumulative shortfall amount. Sixth, calculate the projected year-end Group PBT exposure if every segment currently in breach of the 10% threshold continues to underperform at the same average monthly run rate for the remaining months of the financial year, and present this as a segment-by-segment exposure table with a grand total worst-case RM figure at the bottom for the Group MD briefing.</div>
+      </div>
+    </div>
+
+
+    <!-- EXERCISE 3 -->
+    <div id="page-ex3" class="page">
+      <h1 class="page-title">Exercise 3 &middot; Contract &amp; Reporting</h1>
+      <p class="subtitle">Tools: Word, PowerPoint, Cowork &nbsp;&middot;&nbsp; 30 minutes</p>
+      <div class="card">
+        <h2>Objective</h2>
+        <p>Use Copilot in Word to find clauses in the QuantumStream managed-services agreement that breach the BNM Outsourcing Policy and the Group Outsourcing &amp; Finance policy. Use PowerPoint Copilot to build the Board Risk Committee deck. Use Cowork to delegate five parallel follow-up tasks before the committee.</p>
+      </div>
+      <div class="card">
+        <h2>Task 1 &middot; Word: Vendor Contract Review</h2>
+        <p>Open <strong>02_KIBB_VendorContract.docx</strong> in Word. Open Copilot from the <strong>Home ribbon → Copilot</strong> pane.</p>
+        <div class="prompt-box" id="p3-1"><button class="copy-btn" onclick="copyPrompt('p3-1')">📋 Copy</button>I am the Group Chief Financial Officer of Kenanga Investment Bank Berhad and I am preparing for the Board Risk Committee on Thursday 27 March 2026. This document is the managed-services agreement signed with QuantumStream Technologies Sdn Bhd, our outsourced trading platform and post-trade processing provider, at a contract value of RM 240,000 per month over 36 months and a total contract value of approximately RM 8.64 million. The board has asked me to confirm that the contract is fully compliant with our Group Outsourcing and Finance policy and with BNM Outsourcing Policy BNM/RH/PD 028-99 before the next renewal cycle. Read this contract carefully end to end and identify every clause that creates a HIGH or MEDIUM risk for KIBB or that breaches our internal Group policy. For each issue identified, present the finding in a structured table with the following columns: contract clause reference and section number, risk rating of HIGH or MEDIUM, a plain English explanation of the issue and why it matters from a regulatory and commercial perspective, the corresponding KIBB Group Outsourcing and Finance policy reference that has been breached, the estimated annual or contract-life RM exposure, and a specific recommended remediation action that should be tabled at the Board Risk Committee. Pay particular attention to clauses dealing with pricing escalation and variation rights, contract term and renewal mechanics, data ownership and intellectual property in derived data sets, cross-border data hosting and offshoring of customer information including the requirement for prior BNM written consent, audit rights for KIBB Internal Audit and BNM examination access, service availability and recovery time objectives, and limitation of liability and exclusions. Do not omit any HIGH or MEDIUM risk you find, and present the findings in descending order of severity so the most material breaches appear first.</div>
+
+        <p style="margin-top:14px;font-size:.85rem;color:var(--dgrey)">After Copilot generates the table, you should see the following risk findings:</p>
+        <div style="overflow-x:auto;margin-top:8px">
+          <table class="files">
+            <tr><th>Clause</th><th>Risk</th><th>Issue</th><th>Policy reference breached</th></tr>
+            <tr><td>4.2 (Annual Adjustment)</td><td><span style="color:#dc2626;font-weight:700">HIGH</span></td><td>Unilateral 7% annual escalation by vendor</td><td>§4.3 caps annual increase at 3% with prior written approval</td></tr>
+            <tr><td>5.1 (Auto-Renewal)</td><td><span style="color:#dc2626;font-weight:700">HIGH</span></td><td>45-day non-renewal notice insufficient for orderly transition of a critical IT outsourcing</td><td>§6.2 requires minimum 90 days for material outsourcing</td></tr>
+            <tr><td>6.2 (Derived Data)</td><td><span style="color:#dc2626;font-weight:700">HIGH</span></td><td>Vendor claims ownership of derived analytics and ML training data</td><td>§7.1 all bank and customer data including derivatives must remain bank IP</td></tr>
+            <tr><td>6.3 (Data Hosting)</td><td><span style="color:#dc2626;font-weight:700">HIGH</span></td><td>Cross-border hosting at vendor discretion with only 30 days notice</td><td>§7.2/7.3/7.4 requires prior BNM written consent under BNM/RH/PD 028-99</td></tr>
+            <tr><td>7.1 (Audit)</td><td style="color:#d97706;font-weight:700">MEDIUM</td><td>Audit limited to once per year, vendor charges costs, no BNM examination access</td><td>§8 requires unlimited regulator and Internal Audit access at vendor cost</td></tr>
+            <tr><td>8.1/8.2 (SLA &amp; RTO)</td><td><span style="color:#dc2626;font-weight:700">HIGH</span></td><td>99.5% availability and 24-hour RTO inadequate for trading platform</td><td>§9.1 requires 99.9%; §9.2 requires 2-hour RTO for critical systems</td></tr>
+            <tr><td>9.1/9.2 (Liability)</td><td><span style="color:#dc2626;font-weight:700">HIGH</span></td><td>Liability cap of 6 months fees (~RM 1.44m), excludes data loss and reputational harm</td><td>§10.1 minimum 12 months; §10.2 uncapped carve-outs for data loss, fraud, regulatory penalties</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Task 2 &middot; PowerPoint: Build the Board Risk Committee Deck</h2>
+        <p>Open a <strong>blank PowerPoint presentation</strong>. Open Copilot from the <strong>Home ribbon → Copilot</strong> pane.</p>
+        <p style="margin-top:8px;font-size:.85rem;color:var(--dgrey)">💡 <strong>Tip:</strong> Make sure both <strong>02_KIBB_VendorContract.docx</strong> and <strong>01_KIBB_SegmentPnL.xlsx</strong> are saved to your OneDrive so Copilot can reference them by name.</p>
+        <div class="prompt-box" id="p3-2"><button class="copy-btn" onclick="copyPrompt('p3-2')">📋 Copy</button>Build a Board Risk Committee deck for Kenanga Investment Bank Berhad referencing 02_KIBB_VendorContract.docx and 01_KIBB_SegmentPnL.xlsx. Format as a professional financial-services board pack, KIBB-branded, navy and white, six slides total. Slide 1 is the cover slide titled "Q1 Board Risk Committee — Group Risk &amp; Outsourcing Review", subtitle "Prepared by Group CFO, Priya Subramaniam", dated Thursday 27 March 2026. Slide 2 is the Executive Summary listing three headline messages: Group PBT performance versus budget with overall RAG status; identified BNM Outsourcing Policy breaches in the QuantumStream Technologies managed-services agreement; and recommended Board decisions. Slide 3 is the Segment Variance Snapshot showing the four segments with the largest adverse variance to budget with RM and percentage figures and RAG status. Slide 4 is the Vendor Contract Risk Register summarising every HIGH and MEDIUM finding from the QuantumStream contract review with one-line descriptions and RM exposure. Slide 5 is the Recommended Actions slide with five concrete decisions for the Board: corrective action plans for breached segments, immediate written notice to QuantumStream on the seven non-compliant clauses, regularisation plan to BNM under the Outsourcing Policy notification framework, refresh of the Group Outsourcing and Finance policy where gaps are identified, and approval of the FY2026 outsourcing oversight budget. Slide 6 is Next Steps with owners, timelines, and the date of the next checkpoint. Keep all bullets to a maximum of two lines, use clean board-pack typography, and avoid stock imagery.</div>
+      </div>
+      <div class="card">
+        <h2>Task 3 &middot; Cowork: Five Parallel Tasks</h2>
+        <p>Cowork lets you delegate multiple tasks to Copilot in parallel. Open <a href="https://m365.cloud.microsoft/chat" target="_blank">Copilot Chat</a>, click <strong>Cowork</strong> from the agent panel, and paste the prompt below.</p>
+        <div class="prompt-box" id="p3-3"><button class="copy-btn" onclick="copyPrompt('p3-3')">📋 Copy</button>I am the Group Chief Financial Officer of Kenanga Investment Bank Berhad preparing for the Board Risk Committee on Thursday 27 March 2026. I need you to handle five tasks in parallel. Task 1: create a Word document titled "Q1 Board Risk Committee — Pre-read Summary" containing a 250-word executive briefing covering segment variance highlights and the QuantumStream Technologies vendor contract findings, suitable for the Group MD and the Chairman to read in five minutes ahead of the meeting, and save it to my OneDrive. Task 2: create a second Word document titled "BNM Outsourcing Policy — Response Memo" containing a draft response to BNM regarding the QuantumStream Technologies managed-services agreement, written in formal regulatory correspondence style, acknowledging the identified non-compliances against BNM/RH/PD 028-99, outlining the remediation plan and timeline, and stating KIBB's commitment to ongoing compliance, and save it to my OneDrive. Task 3: draft an Outlook email to the Board Risk Committee members (use placeholders [BRC Chair], [Group MD], [Chief Risk Officer]) confirming the meeting on Thursday 27 March 2026 from 10:00 to 12:00 in the Boardroom, attaching the pre-read summary, and listing the agenda: Q1 segment performance review, vendor outsourcing risk update, BNM Outsourcing Policy compliance, and recommended Group Board actions. Task 4: create an Outlook calendar invite for the Board Risk Committee meeting on Thursday 27 March 2026 from 10:00 to 12:00 with all committee members, the Boardroom location, and the agenda in the body. Task 5: draft a short Teams message to my Finance and Risk leadership channel notifying them that the Q1 board pack and BNM response memo are with the Group MD for sign-off and that the Board Risk Committee is confirmed for Thursday morning. Run all five tasks in parallel and report back when each is complete.</div>
+      </div>
+    </div>
+
+    <!-- EXERCISE 4 -->
+    <div id="page-ex4" class="page">
+      <h1 class="page-title">Exercise 4 &middot; Build Your Custom Agent</h1>
+      <p class="subtitle">Tool: Microsoft 365 Agent Builder &nbsp;&middot;&nbsp; 20 minutes</p>
+      <div class="card">
+        <h2>Objective</h2>
+        <p>Build a custom Copilot agent that wraps your team's institutional policy knowledge in a re-usable, governed assistant. Today's example is the <strong>Group Outsourcing &amp; Finance Policy Advisor</strong>, an agent that any KIBB Procurement, Finance, or Risk Manager can ask about the Group Outsourcing &amp; Finance policy and receive a precise, traceable answer grounded in the policy document and its BNM, FSA, CMSA, and PDPA references.</p>
+      </div>
+      <div class="card">
+        <h2>The Business Case</h2>
+        <p>Your Group Procurement team currently consults the Group Outsourcing &amp; Finance policy manually for every material vendor agreement, every cross-border data transfer, every renewal, and every variation. The policy is 16 sections long, references multiple BNM, FSA, CMSA, and PDPA provisions, and is updated periodically. A custom Copilot agent grounded in the policy document gives every Procurement Manager an instant, accurate, citation-backed second opinion before they sign off on a vendor request.</p>
+      </div>
+      <div class="card">
+        <h2>Task 1 &middot; Open Agent Builder</h2>
+        <div class="step"><div class="step-num">1</div><div class="step-body">Open <a href="https://m365.cloud.microsoft/chat" target="_blank">Copilot Chat</a>.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">In the right-hand pane, find the <strong>Agents</strong> section and click <strong>Create agent</strong>, or open the <strong>Agent Builder</strong> directly from the agents panel.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">You can create your agent by chatting with the builder using natural language, or by filling in the structured fields manually. Today we will use the natural-language route.</div></div>
+      </div>
+      <div class="card">
+        <h2>Task 2 &middot; Describe Your Agent</h2>
+        <p>In the Agent Builder chat, paste the prompt below to describe the agent you want:</p>
+        <div class="prompt-box" id="p4-1"><button class="copy-btn" onclick="copyPrompt('p4-1')">📋 Copy</button>I want to create a custom Copilot agent called "Group Outsourcing &amp; Finance Policy Advisor" for Kenanga Investment Bank Berhad. The agent's purpose is to help our Group Procurement, Finance, and Risk colleagues quickly check whether a proposed vendor engagement, contract clause, or change is compliant with the KIBB Group Outsourcing and Finance policy and the underlying regulatory requirements from Bank Negara Malaysia, the Financial Services Act 2013, the Capital Markets and Services Act 2007 and the Personal Data Protection Act 2010. The agent should answer questions in clear, plain English, always cite the specific policy section number and any external regulation referenced, and where the proposal is non-compliant or borderline, suggest the specific remediation step required, including any prior written approval needed from BNM under the Outsourcing Policy notification framework. The tone should be that of a senior internal risk advisor: precise, helpful, and action-oriented. The agent must always recommend the user consult the Chief Risk Officer or Group Compliance for high-risk or material outsourcing engagements before any final decision is taken.</div>
+      </div>
+      <div class="card">
+        <h2>Task 3 &middot; Add the Policy as Knowledge</h2>
+        <div class="step"><div class="step-num">1</div><div class="step-body">In the Agent Builder, scroll to the <strong>Knowledge</strong> section.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">Click <strong>Add knowledge</strong> and select <strong>Files</strong>.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">Upload <strong>04_KIBB_GroupOutsourcingFinancePolicy.docx</strong> from your OneDrive.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">Confirm the file shows under Knowledge with a green tick.</div></div>
+      </div>
+      <div class="card">
+        <h2>Task 4 &middot; Add Starter Prompts</h2>
+        <p>In the Agent Builder, scroll to the <strong>Starter prompts</strong> section. Add the following four starter prompts so users immediately know how to engage the agent:</p>
+        <ol style="padding-left:22px;line-height:1.9">
+          <li><strong>Vendor pre-engagement check.</strong> "I am about to engage [VENDOR] for [SERVICE] at an estimated annual contract value of RM [AMOUNT]. What does our Group Outsourcing &amp; Finance policy require me to do before signing?"</li>
+          <li><strong>Cross-border data hosting.</strong> "A vendor wants to host KIBB customer data in [COUNTRY]. What are our policy and BNM requirements?"</li>
+          <li><strong>Material outsourcing definition.</strong> "How do I determine whether an outsourcing arrangement is classified as material outsourcing under our policy and BNM/RH/PD 028-99?"</li>
+          <li><strong>Contract renewal triggers.</strong> "What are the policy requirements when a material outsourcing contract is approaching renewal?"</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h2>Task 5 &middot; Test Your Agent</h2>
+        <p>Use the <strong>Test</strong> pane on the right side of the Agent Builder. Try the prompt below:</p>
+        <div class="prompt-box" id="p4-2"><button class="copy-btn" onclick="copyPrompt('p4-2')">📋 Copy</button>I am the Group CFO. Our trading platform vendor wants to vary our existing managed-services agreement so that our customer trading data can be hosted in their Singapore data centre instead of Kuala Lumpur, with a 30-day notice period for any future moves of that data to other regions. The vendor argues this gives them better resilience and lower latency. What do our Group Outsourcing &amp; Finance policy and the underlying BNM Outsourcing Policy require me to do before I can approve this change, who within KIBB needs to be involved, and what specific written approvals or notifications are required from Bank Negara Malaysia? Please cite the relevant policy section numbers in your answer.</div>
+        <p style="margin-top:10px">A correctly grounded agent will cite §7.2, §7.3, and §7.4 of the policy, reference BNM/RH/PD 028-99, and explicitly state that prior BNM written consent is required before any cross-border hosting of customer data.</p>
+      </div>
+      <div class="card">
+        <h2>Task 6 &middot; Save and Share</h2>
+        <div class="step"><div class="step-num">1</div><div class="step-body">Click <strong>Create</strong> at the top of the Agent Builder to save your agent.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">Once created, click <strong>Share</strong>.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">Add the email addresses of your Group Procurement, Finance, and Risk colleagues. They can now access the agent directly from their Copilot Chat.</div></div>
+      </div>
+    </div>
+
+
+    <!-- USE CASES -->
+    <div id="page-usecases" class="page">
+      <h1 class="page-title">Use Cases at KIBB</h1>
+      <p class="subtitle">Where M365 Copilot can deliver immediate value across Group Finance, Procurement, and Risk</p>
+
+      <div class="card">
+        <h2>Group Finance Use Cases</h2>
+        <div class="uc-card">
+          <h4>1. Segment Variance Commentary &amp; Management Reporting</h4>
+          <p><strong>The Pain:</strong> Group Finance team spends two to three working days each month preparing the segment variance pack, drafting the Group CFO commentary, and circulating it for review across eight business segments before it reaches the Group MD and the Group Board.</p>
+          <p><strong>The Copilot Solution:</strong> Excel Copilot reads the segment P&amp;L file, builds the variance table with RAG status, and drafts the Group CFO commentary in formal Bursa-disclosure language, in minutes. Group Finance moves from preparing numbers to challenging them.</p>
+        </div>
+        <div class="uc-card">
+          <h4>2. Capital, Liquidity &amp; Stress Testing Narrative</h4>
+          <p><strong>The Pain:</strong> Quarterly capital and liquidity reporting to BNM and the Group Board requires Treasury and Finance to coordinate inputs from multiple systems and write a consistent narrative covering capital adequacy ratios, liquidity coverage, and stress testing outcomes.</p>
+          <p><strong>The Copilot Solution:</strong> Copilot Chat synthesises Treasury, Risk, and Finance data into a single Group narrative for the BNM submission and the Board pack, with consistent terminology and tone across cycles.</p>
+        </div>
+        <div class="uc-card">
+          <h4>3. Investment Banking Pipeline &amp; Conversion Review</h4>
+          <p><strong>The Pain:</strong> The Investment Banking head reviews the deal pipeline weekly across ECM, DCM, and M&amp;A but consolidating updates from each deal team takes hours of email and Teams scraping before any insight can be drawn for the Group MD.</p>
+          <p><strong>The Copilot Solution:</strong> Copilot summarises the IB pipeline from emails, Teams threads, and uploaded pipeline trackers, flags slipping mandates, calculates conversion rates by deal type, and drafts the Group MD update in minutes.</p>
+        </div>
+        <div class="uc-card">
+          <h4>4. ESG &amp; Bursa Sustainability Disclosure</h4>
+          <p><strong>The Pain:</strong> Bursa's National Sustainability Reporting Framework, aligned to ISSB IFRS S1 and S2, increases the scope and depth of mandatory disclosures every year. Drafting Group sustainability statements consistent with prior-year disclosures and peer practice is a heavy lift for the Sustainability and Investor Relations teams.</p>
+          <p><strong>The Copilot Solution:</strong> Copilot ingests prior-year Annual Report sustainability statements, peer disclosures, and current-year data, and drafts the Group sustainability statement in Bursa-aligned format with consistent terminology.</p>
+        </div>
+        <div class="uc-card">
+          <h4>5. Year-End External Audit Readiness</h4>
+          <p><strong>The Pain:</strong> The external audit cycle generates hundreds of audit queries across Group Finance, Treasury, and the segments. Drafting accurate, consistent management responses with supporting working papers consumes weeks of senior Finance time each year-end.</p>
+          <p><strong>The Copilot Solution:</strong> Copilot drafts management responses to audit queries from the relevant working papers, prior-year responses, and accounting policies, with the Finance Manager reviewing and signing off, dramatically compressing the year-end timetable.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Group Procurement &amp; Vendor Risk Use Cases</h2>
+        <div class="uc-card">
+          <h4>1. Vendor Outsourcing Compliance Review</h4>
+          <p><strong>The Pain:</strong> Every material vendor agreement, renewal, and variation must be checked manually against the Group Outsourcing &amp; Finance policy and BNM/RH/PD 028-99 before sign-off. Procurement Managers default to escalating everything to Compliance, slowing the business.</p>
+          <p><strong>The Copilot Solution:</strong> The Group Outsourcing &amp; Finance Policy Advisor agent (built in Exercise 4) gives every Procurement Manager an instant, citation-backed second opinion on any vendor proposal, with Compliance and the CRO reserved for genuinely material decisions.</p>
+        </div>
+        <div class="uc-card">
+          <h4>2. Material Outsourcing Onboarding (BNM-aware)</h4>
+          <p><strong>The Pain:</strong> Onboarding a material outsourcing partner involves a multi-stage due-diligence pack, a board paper, a BNM notification, and an internal risk register entry. Coordinating this across Procurement, Risk, Compliance, and Legal takes weeks of effort and many meetings.</p>
+          <p><strong>The Copilot Solution:</strong> Copilot drafts the due-diligence questionnaire, the board paper sections, the BNM notification cover letter, and the risk register entry from the same single set of vendor inputs, in a consistent and re-usable template.</p>
+        </div>
+        <div class="uc-card">
+          <h4>3. Cross-Border Data Transfer Assessment (PDPA + BNM)</h4>
+          <p><strong>The Pain:</strong> Any vendor proposal that touches customer data hosted offshore must be assessed against PDPA 2010, BNM Outsourcing Policy, and BNM RMiT. The assessment cuts across Legal, Compliance, Risk, and Data Protection, and the documentation trail is rarely consistent.</p>
+          <p><strong>The Copilot Solution:</strong> Copilot reviews the proposed arrangement against the policy and regulations, drafts the cross-border transfer assessment, and produces a consistent file note for the Data Protection Officer and the CRO to approve.</p>
+        </div>
+        <div class="uc-card">
+          <h4>4. Cyber and Operational Incident Briefing</h4>
+          <p><strong>The Pain:</strong> When a third-party or internal cyber or operational incident occurs, the Group MD, Group CRO, and the Board need a clear, factual briefing within hours. Pulling together the timeline, impact, and response plan from incident logs and Teams chats under time pressure is painful.</p>
+          <p><strong>The Copilot Solution:</strong> Copilot ingests the incident logs, Teams chats, and stakeholder updates, and drafts the Board-ready incident briefing with a clear timeline, impact, root cause hypothesis, and response plan, ready for review by the Group CRO.</p>
+        </div>
+        <div class="uc-card">
+          <h4>5. Tender Evaluation for Trading Platform Refresh</h4>
+          <p><strong>The Pain:</strong> Strategic platform tenders generate thousands of pages of vendor proposals across multiple bidders. Comparing them on a like-for-like basis, scoring them against requirements, and producing the evaluation report is a multi-week effort for the tender committee.</p>
+          <p><strong>The Copilot Solution:</strong> Copilot reads each vendor proposal, extracts responses against the published requirements matrix, scores them on a consistent scale, surfaces any non-responsive items, and drafts the evaluation report, with the tender committee reviewing and finalising rather than starting from scratch.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIPS -->
+    <div id="page-tips" class="page">
+      <h1 class="page-title">Prompt Engineering Tips</h1>
+      <p class="subtitle">How to get the most out of M365 Copilot</p>
+      <div class="card">
+        <h2>The GCSE Framework</h2>
+        <p>Effective Copilot prompts contain four elements:</p>
+        <table class="files">
+          <tr><th>Element</th><th>What it means</th><th>Example</th></tr>
+          <tr><td><strong>G — Goal</strong></td><td>What outcome do you want?</td><td>"Draft a Board Risk Committee paper"</td></tr>
+          <tr><td><strong>C — Context</strong></td><td>What is the situation, who is the audience?</td><td>"For the KIBB Group Board, addressing BNM follow-up"</td></tr>
+          <tr><td><strong>S — Source</strong></td><td>What documents or data should Copilot use?</td><td>"Based on /02_KIBB_VendorContract.docx"</td></tr>
+          <tr><td><strong>E — Expectations</strong></td><td>What should the output look like?</td><td>"Formal English, 350 words, structured table"</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Best Practices</h2>
+        <ul style="padding-left:20px;line-height:2">
+          <li><strong>Be specific.</strong> "Summarise this contract" is too vague. "Identify HIGH and MEDIUM risk clauses against BNM/RH/PD 028-99 and our Group Outsourcing &amp; Finance policy with RM exposure quantified" is great.</li>
+          <li><strong>Reference files by name.</strong> Use the format <strong>/filename.ext</strong> in Copilot Chat. In Word, Excel, and PowerPoint, Copilot already sees the open file.</li>
+          <li><strong>Specify the format.</strong> Table, bullet list, formal prose, board pack tone, regulatory correspondence — say so explicitly.</li>
+          <li><strong>Iterate.</strong> The first response is rarely the final one. Refine: "make it more formal", "shorten to 200 words", "add a column for RM exposure".</li>
+          <li><strong>Use the right tool for the job.</strong> Copilot Chat for cross-file synthesis, in-app Copilot for editing in context, Researcher for cited research, Analyst for data analysis, Cowork for parallel delegation, Agent Builder for re-usable knowledge agents.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /#main -->
+  </div><!-- /#app -->
+
+  <script>
+    // ───────── Password gate ─────────
+    const HASH = '5428d59b7eb0725e44c9439992353affeedce88169a977a489cb3914b6376d31';
+    const STORAGE_KEY = 'kibb_auth';
+
+    async function sha256(str) {
+      const buf = new TextEncoder().encode(str);
+      const hash = await crypto.subtle.digest('SHA-256', buf);
+      return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    async function unlock() {
+      const input = document.getElementById('pw');
+      const err = document.getElementById('pw-err');
+      const hash = await sha256(input.value);
+      if (hash === HASH) {
+        sessionStorage.setItem(STORAGE_KEY, 'ok');
+        document.getElementById('lock').style.display = 'none';
+        document.getElementById('app').style.display = 'flex';
+        document.getElementById('hamburger').classList.add('unlocked');
+      } else {
+        err.textContent = 'Incorrect password. Please try again.';
+        err.style.display = 'block';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    function togglePw() {
+      const input = document.getElementById('pw');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    // Auto-unlock for the session
+    if (sessionStorage.getItem(STORAGE_KEY) === 'ok') {
+      document.getElementById('lock').style.display = 'none';
+      document.getElementById('app').style.display = 'flex';
+      document.getElementById('hamburger').classList.add('unlocked');
+    }
+
+    // ───────── Page navigation ─────────
+    function show(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#sidebar nav a').forEach(a => a.classList.remove('active'));
+      const page = document.getElementById('page-' + pageId);
+      if (page) page.classList.add('active');
+      const link = document.getElementById('nav-' + pageId);
+      if (link) link.classList.add('active');
+      window.scrollTo(0, 0);
+      // Close sidebar on mobile after navigating
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('show');
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('show');
+    }
+
+    // ───────── Copy prompt ─────────
+    function copyPrompt(id) {
+      const box = document.getElementById(id);
+      const btn = box.querySelector('.copy-btn');
+      const text = box.textContent.replace('📋 Copy', '').replace('✓ Copied', '').trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.innerHTML;
+        btn.innerHTML = '✓ Copied';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 1800);
+      });
+    }
+  </script>
+</body>
+</html>
